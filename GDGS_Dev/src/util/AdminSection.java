@@ -1,9 +1,12 @@
-
 package util;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 public class AdminSection implements ActionListener {
 
@@ -12,7 +15,7 @@ public class AdminSection implements ActionListener {
     JTextField emailField = new JTextField();
     JPasswordField passwordField = new JPasswordField();
     JButton loginButton = new JButton("Login");
-    JButton backButton = new JButton("Back");  // New Back button
+    JButton backButton = new JButton("Back");
 
     AdminSection() {
         BackgroundPanel bgPanel = new BackgroundPanel();
@@ -27,14 +30,14 @@ public class AdminSection implements ActionListener {
         loginButton.setFont(new Font("Arial", Font.PLAIN, 30));
         loginButton.addActionListener(this);
         
-        backButton.setBounds(1800, 900, 100, 50);  // Position the Back button
+        backButton.setBounds(1800, 900, 100, 50);
         backButton.setFont(new Font("Arial", Font.PLAIN, 20));
-        backButton.addActionListener(this);  // Add action listener for the Back button
+        backButton.addActionListener(this);
 
         frame.add(emailField);
         frame.add(loginButton);
         frame.add(passwordField);
-        frame.add(backButton);  // Add the Back button to the frame
+        frame.add(backButton);
         
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -47,14 +50,7 @@ public class AdminSection implements ActionListener {
     
         public BackgroundPanel() {
             try {
-                // Use double backslashes or forward slashes for the image path
                 backgroundImage = new ImageIcon("D:\\Git Hub\\JAVA-PROJECT-4.0\\GDGS_Dev\\src\\util\\GDS SYSTEM(4).png").getImage();
-                
-                if (backgroundImage == null) {
-                    System.err.println("Failed to load image from path: D:\\Git Hub\\JAVA-PROJECT-4.0\\GDGS_Dev\\GDS SYSTEM.png");
-                } else {
-                    System.out.println("Image loaded successfully.");
-                }
             } catch (Exception e) {
                 System.err.println("Error loading image: " + e.getMessage());
             }
@@ -65,28 +61,98 @@ public class AdminSection implements ActionListener {
             super.paintComponent(g);
             if (backgroundImage != null) {
                 g.drawImage(backgroundImage, 0, 0, getWidth(), getHeight(), this);
-            } else {
-                System.err.println("Background image is null.");
             }
         }
     }
 
     @Override
-    public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == loginButton) {
-            String email = emailField.getText();
-            String password = new String(passwordField.getPassword());  // Get the password input
-            
-            // For demonstration purposes, let's print the entered values
-            JOptionPane.showMessageDialog(null, "Email: " + email + "\nPassword: " + password);
-        } else if (e.getSource() == backButton) {  // Handle Back button click
+public void actionPerformed(ActionEvent e) {
+    if (e.getSource() == loginButton) {
+        String email = emailField.getText();
+        String password = new String(passwordField.getPassword());  // Get the password input
+
+        if (validateAdminLogin(email, password)) {
+            // On successful login, open the HelloWorldPage
             frame.dispose();  // Close the current AdminSection window
-            new index();  // Open the index page (LaunchPage)
+            new inadminpage();  // Open the Hello World page
+        } else {
+            JOptionPane.showMessageDialog(null, "Invalid email or password");
+        }
+    } else if (e.getSource() == backButton) {
+        frame.dispose();  // Close the current AdminSection window
+        new index();  // Go back to the launch page
+    }
+}
+
+
+private boolean validateAdminLogin(String email, String password) {
+    Connection conn = null;
+    PreparedStatement ps = null;
+    ResultSet rs = null;
+
+    try {
+        // Get database connection
+        conn = DBConnection.getConnection();
+        // Prepare the SQL query to check email and password from the `admin` table
+        String query = "SELECT * FROM admin WHERE email = ? AND password = ?";
+        ps = conn.prepareStatement(query);
+        ps.setString(1, email);
+        ps.setString(2, password);
+
+        // Execute the query
+        rs = ps.executeQuery();
+
+        // Debug output to check ResultSet
+        if (rs.next()) {
+            System.out.println("Login successful. Record found.");
+            return true;
+        } else {
+            System.out.println("No matching record found.");
+            return false;
+        }
+    } catch (Exception ex) {
+        ex.printStackTrace();
+        return false;
+    } finally {
+        // Close resources
+        try {
+            if (rs != null) rs.close();
+            if (ps != null) ps.close();
+            if (conn != null) conn.close();
+        } catch (Exception ex) {
+            ex.printStackTrace();
         }
     }
+}
+private boolean testDatabaseConnection() {
+    Connection conn = null;
+    try {
+        conn = DBConnection.getConnection();
+        if (conn != null && !conn.isClosed()) {
+            System.out.println("Database connection successful.");
+            return true;
+        } else {
+            System.err.println("Database connection failed.");
+            return false;
+        }
+    } catch (Exception e) {
+        e.printStackTrace();
+        return false;
+    } finally {
+        // Close connection if it was created
+        try {
+            if (conn != null && !conn.isClosed()) {
+                conn.close();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+}
+
+
 
     public static void main(String[] args) {
-        // Create and show the admin section form
         new AdminSection();
     }
 }
