@@ -1,18 +1,20 @@
+package util;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.*;
 import java.awt.*;
-public class FacultySection implements ActionListener
+public class StudentSection implements ActionListener
 {
  JFrame frame = new JFrame();
  
  JTextField emailField = new JTextField();
     JPasswordField passwordField = new JPasswordField();
     JButton loginButton = new JButton("Login");
+    JButton backButton = new JButton("Back");
  
- FacultySection()
+StudentSection()
  
  {
 
@@ -31,9 +33,16 @@ public class FacultySection implements ActionListener
     loginButton.setFont(new Font("Arial", Font.PLAIN, 30));
     loginButton.addActionListener(this);
 
+
+    backButton.setBounds(1800, 900, 100, 50);  // Position the Back button
+    backButton.setFont(new Font("Arial", Font.PLAIN, 20));
+    backButton.addActionListener(this);
+
+
     frame.add(emailField);
     frame.add(loginButton);
     frame.add(passwordField);
+    frame.add(backButton);
 
     //text area over
   
@@ -51,7 +60,7 @@ class BackgroundPanel extends JPanel {
         public BackgroundPanel() {
             try {
                 // Use double backslashes or forward slashes for the image path
-                backgroundImage = new ImageIcon("D:\\Git Hub\\JAVA-PROJECT-4.0\\GDGS_Dev\\GDS SYSTEM(3).png").getImage();
+                backgroundImage = new ImageIcon("D:\\Git Hub\\JAVA-PROJECT-4.0\\GDGS_Dev\\src\\util\\GDS SYSTEM(5).png").getImage();
                 
                 if (backgroundImage == null) {
                     System.err.println("Failed to load image from path: D:\\Git Hub\\JAVA-PROJECT-4.0\\GDGS_Dev\\GDS SYSTEM.png");
@@ -83,6 +92,10 @@ class BackgroundPanel extends JPanel {
             
             // For demonstration purposes, let's print the entered values
             JOptionPane.showMessageDialog(null, "Email: " + email + "\nPassword: " + password);
+        }
+        else if (e.getSource() == backButton) {  // Handle Back button click
+            frame.dispose();  // Close the current AdminSection window
+            new index();  // Open the index page (LaunchPage)
         }
     }
     public static void main(String[] args) {

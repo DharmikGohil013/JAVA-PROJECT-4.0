@@ -1,8 +1,10 @@
+
+package util;
 import java.awt.event.*;
 import javax.swing.*;
 import java.awt.*;
 
-public class LaunchPage implements ActionListener {
+public class index implements ActionListener {
 
     JFrame frame = new JFrame();
     JButton myButton = new JButton("Admin");
@@ -11,7 +13,7 @@ public class LaunchPage implements ActionListener {
     JButton my3Button = new JButton("Exit");
     JLabel label = new JLabel("GDGS SYSTEM", SwingConstants.CENTER);
 
-    LaunchPage() {
+    index() {
        
         BackgroundPanel bgPanel = new BackgroundPanel();
         frame.setContentPane(bgPanel); 
@@ -96,7 +98,7 @@ public class LaunchPage implements ActionListener {
         public BackgroundPanel() {
             try {
                 // Use double backslashes or forward slashes for the image path
-                backgroundImage = new ImageIcon("D:\\Git Hub\\JAVA-PROJECT-4.0\\GDGS_Dev\\GDS SYSTEM.png").getImage();
+                backgroundImage = new ImageIcon("D:\\Git Hub\\JAVA-PROJECT-4.0\\GDGS_Dev\\src\\util\\GDS SYSTEM.png").getImage();
                 
                 if (backgroundImage == null) {
                     System.err.println("Failed to load image from path: D:\\Git Hub\\JAVA-PROJECT-4.0\\GDGS_Dev\\GDS SYSTEM.png");
@@ -121,6 +123,6 @@ public class LaunchPage implements ActionListener {
 
     // Main method to launch the page
     public static void main(String[] args) {
-        new LaunchPage();
+        new index();
     }
 }
