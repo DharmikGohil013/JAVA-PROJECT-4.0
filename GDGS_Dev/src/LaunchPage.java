@@ -9,22 +9,25 @@ public class LaunchPage implements ActionListener {
     JButton my1Button = new JButton("Student");
     JButton my2Button = new JButton("Faculty");
     JButton my3Button = new JButton("Exit");
-    JLabel labal = new JLabel("GDGS SYSTEM", SwingConstants.CENTER);
+    JLabel label = new JLabel("GDGS SYSTEM", SwingConstants.CENTER);
 
     LaunchPage() {
        
         BackgroundPanel bgPanel = new BackgroundPanel();
-
         frame.setContentPane(bgPanel); 
+
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         int labelWidth = 1000;
         int labelHeight = 100;
         int labelX = (screenSize.width - labelWidth) / 2; 
         int labelY = 100;  
-        labal.setBounds(labelX, labelY, labelWidth, labelHeight); 
-        labal.setFont(new Font("Arial", Font.PLAIN, 100));
-        labal.setForeground(Color.YELLOW);
-        frame.add(labal);
+        
+        label.setBounds(labelX, labelY, labelWidth, labelHeight); 
+        label.setFont(new Font("Arial", Font.PLAIN, 100));
+        label.setForeground(Color.YELLOW);
+          // Added the label to the frame
+
+        // Configure the Admin button
         myButton.setBounds(0, 370, 300, 300);
         myButton.setFocusable(false);
         myButton.addActionListener(this);
@@ -32,13 +35,15 @@ public class LaunchPage implements ActionListener {
         myButton.setFont(new Font("Arial", Font.PLAIN, 50));
         myButton.setBackground(Color.BLUE);
 
+        // Configure the Student button
         my1Button.setBounds(1620, 0, 300, 300);
         my1Button.setFocusable(false);
         my1Button.addActionListener(this);
         my1Button.setForeground(Color.white);
         my1Button.setFont(new Font("Arial", Font.PLAIN, 50));
         my1Button.setBackground(Color.GRAY);
-        
+
+        // Configure the Faculty button
         my2Button.setBounds(1620, 370, 300, 300);
         my2Button.setFocusable(false);
         my2Button.addActionListener(this);
@@ -46,18 +51,19 @@ public class LaunchPage implements ActionListener {
         my2Button.setFont(new Font("Arial", Font.PLAIN, 50));
         my2Button.setBackground(Color.GRAY);
 
+        // Configure the Exit button
         my3Button.setBounds(1620, 740, 300, 300);
         my3Button.setFocusable(false);
         my3Button.addActionListener(this);
         my3Button.setForeground(Color.white);
         my3Button.setFont(new Font("Arial", Font.PLAIN, 50));
         my3Button.setBackground(Color.GRAY);
+
         // Add buttons to frame
         frame.add(myButton);
         frame.add(my1Button);
         frame.add(my2Button);
         frame.add(my3Button);
-        
 
         // Frame setup
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -66,48 +72,54 @@ public class LaunchPage implements ActionListener {
         frame.setVisible(true);
     }
 
+    // Single actionPerformed method that handles multiple buttons
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == myButton) {
+        if (e.getSource() == myButton) {  // If Admin button is clicked
             frame.dispose();
-            NewWindow myWindow = new NewWindow();
+            AdminSection myWindow = new AdminSection();  // Open AdminSection window
+        } else if (e.getSource() == my1Button) {  // If Student button is clicked
+            frame.dispose();
+            StudentSection studentWindow = new StudentSection();  // Open StudentSection window
+        } else if (e.getSource() == my2Button) {  // If Faculty button is clicked
+            frame.dispose();
+            FacultySection facultyWindow = new FacultySection();  // Open FacultySection window
+        } else if (e.getSource() == my3Button) {  // If Exit button is clicked
+            System.exit(0);  // Terminate the program
         }
     }
 
-    
+    // BackgroundPanel class for setting the background image
     class BackgroundPanel extends JPanel {
         private Image backgroundImage;
     
         public BackgroundPanel() {
             try {
-                // Attempt to load the background image
-                backgroundImage = new ImageIcon("D:\\Git Hub\\JAVA-PROJECT-4.0\\GDGS_Dev\\3.png").getImage();
-    
-                // Check if the image was loaded successfully
+                // Use double backslashes or forward slashes for the image path
+                backgroundImage = new ImageIcon("D:\\Git Hub\\JAVA-PROJECT-4.0\\GDGS_Dev\\GDS SYSTEM.png").getImage();
+                
                 if (backgroundImage == null) {
-                    System.err.println("Failed to load image from path: D:\\ALL BG PHOTOS\\3.png");
+                    System.err.println("Failed to load image from path: D:\\Git Hub\\JAVA-PROJECT-4.0\\GDGS_Dev\\GDS SYSTEM.png");
                 } else {
                     System.out.println("Image loaded successfully.");
                 }
             } catch (Exception e) {
-                // Print any exceptions that occur
                 System.err.println("Error loading image: " + e.getMessage());
             }
         }
-    
+
         @Override
         protected void paintComponent(Graphics g) {
             super.paintComponent(g);
             if (backgroundImage != null) {
-                // Draw the background image, scaled to fit the entire window
                 g.drawImage(backgroundImage, 0, 0, getWidth(), getHeight(), this);
             } else {
-                // Print an error message if the image is not loaded
                 System.err.println("Background image is null.");
-            }   
+            }
         }
     }
 
+    // Main method to launch the page
     public static void main(String[] args) {
         new LaunchPage();
     }
