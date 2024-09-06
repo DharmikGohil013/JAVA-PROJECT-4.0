@@ -29,28 +29,28 @@ public class LaunchPage implements ActionListener {
         myButton.setFocusable(false);
         myButton.addActionListener(this);
         myButton.setForeground(Color.white);
-        myButton.setFont(new Font("Arial", Font.PLAIN, 24));
-        myButton.setBackground(Color.GRAY);
+        myButton.setFont(new Font("Arial", Font.PLAIN, 50));
+        myButton.setBackground(Color.BLUE);
 
         my1Button.setBounds(1620, 0, 300, 300);
         my1Button.setFocusable(false);
         my1Button.addActionListener(this);
         my1Button.setForeground(Color.white);
-        my1Button.setFont(new Font("Arial", Font.PLAIN, 24));
+        my1Button.setFont(new Font("Arial", Font.PLAIN, 50));
         my1Button.setBackground(Color.GRAY);
         
         my2Button.setBounds(1620, 370, 300, 300);
         my2Button.setFocusable(false);
         my2Button.addActionListener(this);
         my2Button.setForeground(Color.white);
-        my2Button.setFont(new Font("Arial", Font.PLAIN, 24));
+        my2Button.setFont(new Font("Arial", Font.PLAIN, 50));
         my2Button.setBackground(Color.GRAY);
 
         my3Button.setBounds(1620, 740, 300, 300);
         my3Button.setFocusable(false);
         my3Button.addActionListener(this);
         my3Button.setForeground(Color.white);
-        my3Button.setFont(new Font("Arial", Font.PLAIN, 24));
+        my3Button.setFont(new Font("Arial", Font.PLAIN, 50));
         my3Button.setBackground(Color.GRAY);
         // Add buttons to frame
         frame.add(myButton);
