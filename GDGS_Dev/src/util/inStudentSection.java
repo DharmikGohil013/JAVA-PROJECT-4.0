@@ -30,6 +30,8 @@ public class inStudentSection {
         JButton nextExamButton = new JButton("Next Exam Info");
         JButton nextHolidayButton = new JButton("Next Holiday Info");
         JButton onlineLectureButton = new JButton("Online Lectures");
+        JButton timeTableButton = new JButton("Time Table");           // New button
+        JButton facultyDetailsButton = new JButton("Faculty Details"); // New button
         JButton crMenuButton = new JButton("CR Menu");
         JButton logoutButton = new JButton("Logout");
         JButton exitButton = new JButton("Exit");
@@ -42,8 +44,8 @@ public class inStudentSection {
 
         // Apply style to all buttons
         JButton[] buttons = {profileButton, attendanceButton, feesButton, resultButton, classUpdatesButton, materialLinksButton,
-                eventsButton, universityUpdatesButton, nextExamButton, nextHolidayButton, onlineLectureButton,
-                crMenuButton, logoutButton, exitButton};
+                eventsButton, universityUpdatesButton, nextExamButton, nextHolidayButton, onlineLectureButton, 
+                timeTableButton, facultyDetailsButton, crMenuButton, logoutButton, exitButton};
 
         for (JButton button : buttons) {
             button.setPreferredSize(buttonSize);
@@ -68,7 +70,11 @@ public class inStudentSection {
         nextHolidayButton.setBounds(xStart + 250, yStart + ySpacing * 3, buttonSize.width, buttonSize.height);
         onlineLectureButton.setBounds(xStart + 250, yStart + ySpacing * 4, buttonSize.width, buttonSize.height);
 
-        crMenuButton.setBounds(xStart + 250, yStart + ySpacing * 5, buttonSize.width, buttonSize.height);
+        // New buttons added after Online Lecture
+        timeTableButton.setBounds(xStart + 250, yStart + ySpacing * 5, buttonSize.width, buttonSize.height);      // New button
+        facultyDetailsButton.setBounds(xStart + 250, yStart + ySpacing * 6, buttonSize.width, buttonSize.height); // New button
+
+        crMenuButton.setBounds(xStart + 500, yStart + ySpacing * 5, buttonSize.width, buttonSize.height);
         logoutButton.setBounds(xStart + 500, yStart, buttonSize.width, buttonSize.height);
         exitButton.setBounds(xStart + 500, yStart + ySpacing, buttonSize.width, buttonSize.height);
 
@@ -84,32 +90,37 @@ public class inStudentSection {
         frame.add(nextExamButton);
         frame.add(nextHolidayButton);
         frame.add(onlineLectureButton);
+        frame.add(timeTableButton);        // Add new button
+        frame.add(facultyDetailsButton);   // Add new button
         frame.add(crMenuButton);
         frame.add(logoutButton);
         frame.add(exitButton);
 
-        // Profile button action listener to open profile section
+        // Button action listeners
         profileButton.addActionListener(e -> new ProfileSection(loggedInEmail));
         attendanceButton.addActionListener(e -> new AttendanceSection(loggedInEmail));
         feesButton.addActionListener(e -> new FeesSection(loggedInEmail));
-        // Inside inStudentSection class
-resultButton.addActionListener(e -> new ResultSection(loggedInEmail));
-classUpdatesButton.addActionListener(new ActionListener() {
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        // Open the ClassUpdatesPage and pass the logged-in email
-        new ClassUpdatesPage(loggedInEmail);
-    }
-});
+        resultButton.addActionListener(e -> new ResultSection(loggedInEmail));
+        classUpdatesButton.addActionListener(e -> new ClassUpdatesPage(loggedInEmail));
+        eventsButton.addActionListener(e -> new ViewEvent());
+        universityUpdatesButton.addActionListener(e -> new UniversityUpdates());
+        nextExamButton.addActionListener(e -> new DepartmentSelectionPage());
+        nextHolidayButton.addActionListener(e -> new NextHolidaySection());
+        onlineLectureButton.addActionListener(e -> new OnlineLecturesSection());
 
+        // New button action listeners
+        timeTableButton.addActionListener(e -> new TimeTableSection(email));        // Add action for new button
+        facultyDetailsButton.addActionListener(e -> new FacultyDetailsSection(email)); // Add action for new button
 
+        crMenuButton.addActionListener(e -> new CRSectionMenu(email));
+        logoutButton.addActionListener(e -> new LogoutPage());
+        exitButton.addActionListener(e-> new ExitPage());
 
         // Frame settings
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         frame.setVisible(true);
     }
-    
 
     public static void main(String[] args) {
         new inStudentSection("user_email@example.com");  // Assume the user is already logged in
