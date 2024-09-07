@@ -1,4 +1,5 @@
 package util;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -6,42 +7,42 @@ import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 
-public class AttendanceSection {
+public class ResultSection {
+
     JFrame frame;
-    JTextField dateField;
+    JTextField semesterField;
     JButton checkButton, backButton;
-    JLabel statusLabel;
+    JLabel resultLabel;
     String loggedInEmail;
 
-    public AttendanceSection(String email) {
+    public ResultSection(String email) {
         loggedInEmail = email;
-        frame = new JFrame("Attendance Section");
-        dateField = new JTextField();
-        checkButton = new JButton("Check Attendance");
+        frame = new JFrame("Result Section");
+        semesterField = new JTextField();
+        checkButton = new JButton("Check Result");
         backButton = new JButton("Back");
-        statusLabel = new JLabel("Status: ");
+        resultLabel = new JLabel("Result: ");
 
         // Set layout and bounds
         frame.setLayout(null);
-        dateField.setBounds(300, 200, 200, 30);
-        checkButton.setBounds(300, 250, 200, 30);
-        backButton.setBounds(100, 300, 100, 30);
-        statusLabel.setBounds(300, 300, 400, 30);
+        semesterField.setBounds(300, 150, 200, 30);
+        checkButton.setBounds(300, 200, 200, 30);
+        backButton.setBounds(100, 250, 100, 30);
+        resultLabel.setBounds(300, 250, 400, 30);
 
         // Add components to the frame
-        frame.add(dateField);
+        frame.add(semesterField);
         frame.add(checkButton);
         frame.add(backButton);
-        frame.add(statusLabel);
+        frame.add(resultLabel);
 
         // Check Button ActionListener
         checkButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String enteredDate = dateField.getText();
-                checkAttendance(loggedInEmail, enteredDate);
+                String semester = semesterField.getText();
+                fetchResult(semester);
             }
         });
 
@@ -50,7 +51,7 @@ public class AttendanceSection {
             @Override
             public void actionPerformed(ActionEvent e) {
                 frame.dispose();
-                new inStudentSection(loggedInEmail);  // Navigate back to the previous screen
+                new inStudentSection(loggedInEmail); // Navigate back to the previous screen
             }
         });
 
@@ -61,42 +62,34 @@ public class AttendanceSection {
         frame.setVisible(true);
     }
 
-    public void checkAttendance(String email, String date) {
+    private void fetchResult(String semester) {
         Connection conn = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
-    
+
         try {
             // Get database connection
             conn = DBConnection.getConnection();
-    
+
             // Prepare SQL query
-            String query = "SELECT status FROM attendance WHERE student_email = ? AND attendance_date = ?";
+            String query = "SELECT result FROM results WHERE email_id = ? AND semester = ?";
             ps = conn.prepareStatement(query);
-            ps.setString(1, email.trim());
-            ps.setString(2, date.trim());
-    
-            // Construct the final query string for debugging
-            String finalQuery = "SELECT status FROM attendance WHERE student_email = '" + email.trim() + "' AND attendance_date = '" + date.trim() + "'";
-            System.out.println("Final query for debugging: " + finalQuery);
-    
+            ps.setString(1, loggedInEmail);
+            ps.setString(2, semester);
+
             // Execute query
             rs = ps.executeQuery();
-    
-            // Display status
+
+            // Display result
             if (rs.next()) {
-                String status = rs.getString("status");
-                statusLabel.setText("Status: " + status);
+                String result = rs.getString("result");
+                resultLabel.setText("Result: " + result);
             } else {
-                statusLabel.setText("No attendance record found for the given email and date.");
+                resultLabel.setText("No result found for the given semester.");
             }
-    
-        } catch (SQLException e) {
-            System.err.println("SQL Exception: " + e.getMessage());
-            statusLabel.setText("SQL Error: " + e.getMessage());
         } catch (Exception e) {
             e.printStackTrace();
-            statusLabel.setText("Error checking attendance.");
+            resultLabel.setText("Error fetching result.");
         } finally {
             // Close resources
             try {
@@ -108,9 +101,4 @@ public class AttendanceSection {
             }
         }
     }
-    
-    
-
-    
-    
 }

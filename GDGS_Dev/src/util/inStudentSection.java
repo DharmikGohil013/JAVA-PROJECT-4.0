@@ -91,6 +91,11 @@ public class inStudentSection {
         // Profile button action listener to open profile section
         profileButton.addActionListener(e -> new ProfileSection(loggedInEmail));
         attendanceButton.addActionListener(e -> new AttendanceSection(loggedInEmail));
+        feesButton.addActionListener(e -> new FeesSection(loggedInEmail));
+        // Inside inStudentSection class
+resultButton.addActionListener(e -> new ResultSection(loggedInEmail));
+
+
 
         // Frame settings
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
