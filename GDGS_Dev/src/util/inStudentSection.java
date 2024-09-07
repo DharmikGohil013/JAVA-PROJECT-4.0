@@ -94,6 +94,13 @@ public class inStudentSection {
         feesButton.addActionListener(e -> new FeesSection(loggedInEmail));
         // Inside inStudentSection class
 resultButton.addActionListener(e -> new ResultSection(loggedInEmail));
+classUpdatesButton.addActionListener(new ActionListener() {
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        // Open the ClassUpdatesPage and pass the logged-in email
+        new ClassUpdatesPage(loggedInEmail);
+    }
+});
 
 
 
