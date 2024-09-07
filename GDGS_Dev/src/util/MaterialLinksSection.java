@@ -6,21 +6,21 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-public class ClassUpdatesPage {
+public class MaterialLinksSection {
     JFrame frame;
-    JTextArea updatesArea;
+    JTextArea materialsArea;
     JButton backButton;
 
-    public ClassUpdatesPage(String email) {
-        frame = new JFrame("Class Updates");
+    public MaterialLinksSection(String email) {
+        frame = new JFrame("Material Links");
         frame.setLayout(null);
 
-        // TextArea for displaying updates
-        updatesArea = new JTextArea();
-        updatesArea.setFont(new Font("Arial", Font.PLAIN, 18));
-        updatesArea.setEditable(false); // Make it read-only
-        JScrollPane scrollPane = new JScrollPane(updatesArea);
-        scrollPane.setBounds(50, 50, 1200, 600); // Temporary bounds; auto adjusted for full screen
+        // TextArea for displaying materials
+        materialsArea = new JTextArea();
+        materialsArea.setFont(new Font("Arial", Font.PLAIN, 18));
+        materialsArea.setEditable(false); // Make it read-only
+        JScrollPane scrollPane = new JScrollPane(materialsArea);
+        scrollPane.setBounds(50, 50, 1200, 600); // Set size for full screen
 
         // Back Button
         backButton = new JButton("Back");
@@ -38,12 +38,12 @@ public class ClassUpdatesPage {
         frame.add(scrollPane);
         frame.add(backButton);
 
-        // Fetch and display updates based on the user's department
+        // Fetch and display materials based on the user's department
         String department = getDepartmentByEmail(email);
         if (department != null) {
-            fetchClassUpdates(department);
+            fetchMaterials(department);
         } else {
-            updatesArea.setText("No department information found for the email: " + email);
+            materialsArea.setText("No department information found for the email: " + email);
         }
 
         // Frame settings: Full-screen, layout, etc.
@@ -93,33 +93,35 @@ public class ClassUpdatesPage {
         return department;
     }
 
-    // Method to fetch class updates based on the student's department
-    private void fetchClassUpdates(String department) {
+    // Method to fetch materials based on the student's department
+    private void fetchMaterials(String department) {
         Connection conn = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
 
         try {
             conn = DBConnection.getConnection();
-            String query = "SELECT * FROM class_updates WHERE class_name = ?";
+            String query = "SELECT * FROM materials WHERE class_name = ?";
             ps = conn.prepareStatement(query);
             ps.setString(1, department);
             rs = ps.executeQuery();
 
-            // Build the updates text
-            StringBuilder updatesText = new StringBuilder();
+            // Build the materials text
+            StringBuilder materialsText = new StringBuilder();
             while (rs.next()) {
-                String updateDetails = rs.getString("update_details");
-                String updateDate = rs.getString("update_date");
-                updatesText.append("Update: ").append(updateDetails).append("\n");
-                updatesText.append("Date: ").append(updateDate).append("\n\n");
+                String title = rs.getString("title");
+                String link = rs.getString("link");
+                String uploadDate = rs.getString("upload_date");
+                materialsText.append("Title: ").append(title).append("\n");
+                materialsText.append("Link: ").append(link).append("\n");
+                materialsText.append("Uploaded on: ").append(uploadDate).append("\n\n");
             }
 
-            // If no updates are found, show a message
-            if (updatesText.length() == 0) {
-                updatesArea.setText("No updates available for your department.");
+            // If no materials are found, show a message
+            if (materialsText.length() == 0) {
+                materialsArea.setText("No materials available for your department.");
             } else {
-                updatesArea.setText(updatesText.toString());
+                materialsArea.setText(materialsText.toString());
             }
 
         } catch (Exception ex) {
@@ -136,6 +138,6 @@ public class ClassUpdatesPage {
     }
 
     public static void main(String[] args) {
-        new ClassUpdatesPage("user_email@example.com");  // Test with a user's email
+        new MaterialLinksSection("user_email@example.com");  // Test with a user's email
     }
 }

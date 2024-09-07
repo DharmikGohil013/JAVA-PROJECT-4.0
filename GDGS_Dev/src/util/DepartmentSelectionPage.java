@@ -55,8 +55,7 @@ public class DepartmentSelectionPage {
 
         // Frame settings
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(Toolkit.getDefaultToolkit().getScreenSize()); // Full screen
-        frame.setUndecorated(true); // Remove window decorations
+        frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         frame.setVisible(true);
     }
 

@@ -92,7 +92,8 @@ public class NextExamInfoPage {
         frame.setUndecorated(true); // Remove window decorations
 
         // Set frame properties
-        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // Close only this window
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         frame.setVisible(true);
     }
 }
