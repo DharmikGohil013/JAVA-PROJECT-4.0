@@ -102,6 +102,7 @@ resultButton.addActionListener(e -> new ResultSection(loggedInEmail));
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         frame.setVisible(true);
     }
+    
 
     public static void main(String[] args) {
         new inStudentSection("user_email@example.com");  // Assume the user is already logged in
