@@ -8,14 +8,13 @@ import javax.swing.SwingConstants;
 
 public class infacultysection {
     public infacultysection() {
-        JFrame frame = new JFrame("Hello World Page");
+        JFrame frame = new JFrame("Faculty Section");
         JLabel label = new JLabel("Hello World", SwingConstants.CENTER);
 
         frame.setLayout(new BorderLayout());
-        frame.add(label, BorderLayout.CENTER);
-
-        frame.setSize(400, 200);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        frame.setLayout(null);
         frame.setVisible(true);
     }
 

@@ -1,72 +1,56 @@
 package util;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.*;
-import java.awt.*;
-public class StudentSection implements ActionListener
-{
- JFrame frame = new JFrame();
- 
- JTextField emailField = new JTextField();
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
+public class StudentSection implements ActionListener {
+
+    JFrame frame = new JFrame();
+    
+    JTextField emailField = new JTextField();
     JPasswordField passwordField = new JPasswordField();
     JButton loginButton = new JButton("Login");
     JButton backButton = new JButton("Back");
- 
-StudentSection()
- 
- {
 
+    StudentSection() {
+        BackgroundPanel bgPanel = new BackgroundPanel();
+        frame.setContentPane(bgPanel); 
 
-    BackgroundPanel bgPanel = new BackgroundPanel();
-    frame.setContentPane(bgPanel); 
+        // Text area setup
+        emailField.setBounds(400, 430, 400, 50);
+        emailField.setFont(new Font("Arial", Font.PLAIN, 30));
+        passwordField.setBounds(400, 560, 400, 50);
+        passwordField.setFont(new Font("Arial", Font.PLAIN, 30));
+        loginButton.setBounds(480, 650, 200, 60);
+        loginButton.setFont(new Font("Arial", Font.PLAIN, 30));
+        loginButton.addActionListener(this);
+        
+        backButton.setBounds(1800, 900, 100, 50);
+        backButton.setFont(new Font("Arial", Font.PLAIN, 20));
+        backButton.addActionListener(this);
 
-
-    //text area
-
-    emailField.setBounds(400, 430, 400, 50);
-    emailField.setFont(new Font("Arial", Font.PLAIN, 30));
-    passwordField.setBounds(400, 560, 400, 50);
-    passwordField.setFont(new Font("Arial", Font.PLAIN, 30));
-    loginButton.setBounds(480, 650, 200, 60);
-    loginButton.setFont(new Font("Arial", Font.PLAIN, 30));
-    loginButton.addActionListener(this);
-
-
-    backButton.setBounds(1800, 900, 100, 50);  // Position the Back button
-    backButton.setFont(new Font("Arial", Font.PLAIN, 20));
-    backButton.addActionListener(this);
-
-
-    frame.add(emailField);
-    frame.add(loginButton);
-    frame.add(passwordField);
-    frame.add(backButton);
-
-    //text area over
-  
-  
-  
-  
-  frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.add(emailField);
+        frame.add(loginButton);
+        frame.add(passwordField);
+        frame.add(backButton);
+        
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         frame.setLayout(null);
-        frame.setVisible(true);   
-}
-class BackgroundPanel extends JPanel {
+        frame.setVisible(true);
+    }
+
+    class BackgroundPanel extends JPanel {
         private Image backgroundImage;
     
         public BackgroundPanel() {
             try {
-                // Use double backslashes or forward slashes for the image path
                 backgroundImage = new ImageIcon("D:\\Git Hub\\JAVA-PROJECT-4.0\\GDGS_Dev\\src\\util\\GDS SYSTEM(5).png").getImage();
-                
-                if (backgroundImage == null) {
-                    System.err.println("Failed to load image from path: D:\\Git Hub\\JAVA-PROJECT-4.0\\GDGS_Dev\\GDS SYSTEM.png");
-                } else {
-                    System.out.println("Image loaded successfully.");
-                }
             } catch (Exception e) {
                 System.err.println("Error loading image: " + e.getMessage());
             }
@@ -77,30 +61,106 @@ class BackgroundPanel extends JPanel {
             super.paintComponent(g);
             if (backgroundImage != null) {
                 g.drawImage(backgroundImage, 0, 0, getWidth(), getHeight(), this);
-            } else {
-                System.err.println("Background image is null.");
             }
         }
     }
 
     @Override
-    public void actionPerformed(ActionEvent e) {
-        // Check if the login button was clicked
-        if (e.getSource() == loginButton) {
-            String email = emailField.getText();
-            String password = new String(passwordField.getPassword());  // Get the password input
-            
-            // For demonstration purposes, let's print the entered values
-            JOptionPane.showMessageDialog(null, "Email: " + email + "\nPassword: " + password);
-        }
-        else if (e.getSource() == backButton) {  // Handle Back button click
-            frame.dispose();  // Close the current AdminSection window
-            new index();  // Open the index page (LaunchPage)
-        }
-    }
-    public static void main(String[] args) {
-        // Create and show the login form
-        new FacultySection();
-    }
+public void actionPerformed(ActionEvent e) {
+    if (e.getSource() == loginButton) {
+        String email = emailField.getText();
+        String password = new String(passwordField.getPassword());  // Get the password input
 
+        if (validateAdminLogin(email, password)) {
+            // On successful login, open the HelloWorldPage
+            frame.dispose();  // Close the current AdminSection window
+            new inStudentSection(email);  // Open the Hello World page
+        } else {
+            JOptionPane.showMessageDialog(null, "Invalid email or password");
+        }
+    } else if (e.getSource() == backButton) {
+        frame.dispose();  // Close the current AdminSection window
+        new index();  // Go back to the launch page
+    }
+}
+
+
+private boolean validateAdminLogin(String email, String password) {
+    Connection conn = null;
+    PreparedStatement ps = null;
+    ResultSet rs = null;
+
+    String[] tables = {"student_it", "student_ce", "student_cs", "student_cd"};  // List of tables to check
+
+    try {
+        // Get database connection
+        conn = DBConnection.getConnection();
+
+        // Loop through each table to check if email and password match
+        for (String table : tables) {
+            String query = "SELECT * FROM " + table + " WHERE email = ? AND password = ?";
+            ps = conn.prepareStatement(query);
+            ps.setString(1, email);
+            ps.setString(2, password);
+
+            // Execute the query
+            rs = ps.executeQuery();
+
+            // If a matching record is found in the current table
+            if (rs.next()) {
+                System.out.println("Login successful. Record found in table: " + table);
+                return true;  // Return true immediately if a match is found
+            }
+        }
+
+        // If no record was found in any table
+        System.out.println("No matching record found in any table.");
+        return false;
+
+    } catch (Exception ex) {
+        ex.printStackTrace();
+        return false;
+    } finally {
+        // Close resources
+        try {
+            if (rs != null) rs.close();
+            if (ps != null) ps.close();
+            if (conn != null) conn.close();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+}
+
+private boolean testDatabaseConnection() {
+    Connection conn = null;
+    try {
+        conn = DBConnection.getConnection();
+        if (conn != null && !conn.isClosed()) {
+            System.out.println("Database connection successful.");
+            return true;
+        } else {
+            System.err.println("Database connection failed.");
+            return false;
+        }
+    } catch (Exception e) {
+        e.printStackTrace();
+        return false;
+    } finally {
+        // Close connection if it was created
+        try {
+            if (conn != null && !conn.isClosed()) {
+                conn.close();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+}
+
+
+
+    public static void main(String[] args) {
+        new StudentSection();
+    }
 }
