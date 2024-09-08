@@ -132,7 +132,7 @@ public class inStudentSection {
         // New button action listeners
         timeTableButton.addActionListener(e -> new TimeTableSection(email));       
         facultyDetailsButton.addActionListener(e -> new FacultyDetailsSection(email));
-        ccOnlyButton.addActionListener(e -> new CCOnlySection()); // Action for CC Only button
+        ccOnlyButton.addActionListener(e -> new CCSection(email)); // Action for CC Only button
 
         crMenuButton.addActionListener(e -> new CRSectionMenu(email));
         logoutButton.addActionListener(e -> new LogoutPage());
