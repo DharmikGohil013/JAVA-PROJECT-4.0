@@ -1,6 +1,6 @@
 package util;
 
-import com.toedter.calendar.JDateChooser;  // Import JCalendar classes
+import com.toedter.calendar.JDateChooser;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
@@ -25,7 +25,7 @@ public class AddNextExamInfoSection {
         frame.setLayout(new BorderLayout());
 
         // Create panel for form inputs
-        JPanel inputPanel = new JPanel(new GridLayout(5, 2, 10, 10));
+        JPanel inputPanel = new JPanel(new GridLayout(6, 2, 10, 10));
 
         // Date picker
         dateChooser = new JDateChooser();
@@ -54,15 +54,30 @@ public class AddNextExamInfoSection {
         // Add input panel to frame
         frame.add(inputPanel, BorderLayout.NORTH);
 
-        // Add button to submit new exam info
+        // Add button panel
+        JPanel buttonPanel = new JPanel();
+
+        JButton backButton = new JButton("Back");
+        backButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frame.dispose(); // Close the current frame
+                // You might want to add logic to show the previous window here
+            }
+        });
+        buttonPanel.add(backButton);
+
         JButton addButton = new JButton("Add Exam Info");
+        addButton.setPreferredSize(new Dimension(150, 30)); // Set small size for button
         addButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 addExamInfo();
             }
         });
-        frame.add(addButton, BorderLayout.CENTER);
+        buttonPanel.add(addButton);
+
+        frame.add(buttonPanel, BorderLayout.CENTER);
 
         // Create table to show existing exams
         tableModel = new DefaultTableModel(new String[]{"No", "Date", "Exam Type", "Department", "Time", "Syllabus"}, 0);
@@ -74,8 +89,8 @@ public class AddNextExamInfoSection {
         loadExamData();
 
         // Frame settings
+        frame.setExtendedState(JFrame.MAXIMIZED_BOTH); // Set fullscreen
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        frame.setSize(600, 400);
         frame.setVisible(true);
     }
 
@@ -99,7 +114,8 @@ public class AddNextExamInfoSection {
         }
 
         try {
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/yourdatabase", "username", "password");
+            // Use your database credentials
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/test_db", "root", "DHARMIKgohil@2006");
             String sql = "INSERT INTO next_exam_info (date, exam_type, department, time, syllabus) VALUES (?, ?, ?, ?, ?)";
             PreparedStatement pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, date);
@@ -127,6 +143,7 @@ public class AddNextExamInfoSection {
 
     private void loadExamData() {
         try {
+            // Use your database credentials
             Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/test_db", "root", "DHARMIKgohil@2006");
             String sql = "SELECT * FROM next_exam_info";
             PreparedStatement pstmt = conn.prepareStatement(sql);

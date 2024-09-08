@@ -118,8 +118,8 @@ public class inAdminSection {
         // viewFeesDetailsButton.addActionListener(e -> new ViewFeesDetailsSection());
         // timeTableDetailsChangeButton.addActionListener(e -> new ChangeTimeTableDetailsSection());
         otherButton.addActionListener(e -> new UniversityUpdates());
-        // nextExamInfoAddButton.addActionListener(e -> new AddNextExamInfoSection());
-        // nextHolidayAddButton.addActionListener(e -> new AddNextHolidaySection());
+        nextExamInfoAddButton.addActionListener(e -> new AddNextExamInfoSection());
+        nextHolidayAddButton.addActionListener(e -> new AddNextHolidaySection());
         logoutButton.addActionListener(e -> new LogoutPage());
         exitButton.addActionListener(e -> System.exit(0));
 
