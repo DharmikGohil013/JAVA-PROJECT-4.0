@@ -1,6 +1,7 @@
 package util;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
@@ -19,29 +20,31 @@ public class SendMessageToPrincipal extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(400, 300);
         setLocationRelativeTo(null);
-
+    
         // Initialize components
         senderEmailField = new JTextField(20);
         messageTextArea = new JTextArea(10, 30);
         sendButton = new JButton("Send");
         backButton = new JButton("Back");
-
+    
         // Set up layout
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
-
+    
         panel.add(new JLabel("Your Email:"));
         panel.add(senderEmailField);
-
+    
         panel.add(new JLabel("Message to Principal:"));
         JScrollPane scrollPane = new JScrollPane(messageTextArea);
+        messageTextArea.setLineWrap(true);  // Enable word wrap
+        messageTextArea.setWrapStyleWord(true);  // Wrap by word
         panel.add(scrollPane);
-
+    
         panel.add(sendButton);
         panel.add(backButton);
-
+    
         add(panel);
-
+    
         // Initialize database connection
         try {
             connection = DBConnection.getConnection();
@@ -50,7 +53,7 @@ public class SendMessageToPrincipal extends JFrame {
             JOptionPane.showMessageDialog(this, "Database connection failed", "Error", JOptionPane.ERROR_MESSAGE);
             System.exit(1); // Exit if the connection fails
         }
-
+    
         // Add action listeners
         sendButton.addActionListener(new ActionListener() {
             @Override
@@ -58,14 +61,19 @@ public class SendMessageToPrincipal extends JFrame {
                 sendMessage();
             }
         });
-
+    
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                new inAdminSection("admin_email@example.com");  // Navigate back to admin section
                 dispose(); // Close the current window
             }
         });
+    
+        // Make the frame visible
+        setVisible(true); // Add this to ensure the window is shown when created
     }
+    
 
     private void sendMessage() {
         String senderEmail = senderEmailField.getText().trim();
@@ -100,6 +108,7 @@ public class SendMessageToPrincipal extends JFrame {
             @Override
             public void run() {
                 new SendMessageToPrincipal().setVisible(true);
+
             }
         });
     }

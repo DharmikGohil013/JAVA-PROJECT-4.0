@@ -3,6 +3,8 @@ package util;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -12,11 +14,13 @@ public class AdminMessageView extends JFrame {
     private JTable messagesTable;
     private DefaultTableModel tableModel;
     private Connection connection;
+    private JButton backButton;
 
     public AdminMessageView() {
         setTitle("View Messages from Principal");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(800, 600);
+        setLocationRelativeTo(null); // Center the window on the screen
 
         // Initialize database connection
         try {
@@ -36,15 +40,38 @@ public class AdminMessageView extends JFrame {
 
         // Initialize table and set its model
         messagesTable = new JTable(tableModel);
+
+        // Set larger font for better readability
+        Font tableFont = new Font("Arial", Font.PLAIN, 18);
+        messagesTable.setFont(tableFont);
+        messagesTable.setRowHeight(30);
+
+        // Set table header font larger
+        Font headerFont = new Font("Arial", Font.BOLD, 20);
+        messagesTable.getTableHeader().setFont(headerFont);
+
         JScrollPane scrollPane = new JScrollPane(messagesTable);
         add(scrollPane, BorderLayout.CENTER);
 
+        // Add back button
+        backButton = new JButton("Back");
+        backButton.setFont(new Font("Arial", Font.PLAIN, 18));
+        add(backButton, BorderLayout.SOUTH);
+        
+        // Back button functionality to close the current window and navigate to the admin section
+        backButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new inAdminSection("admin_email@example.com");  // Adjust the email value as needed
+                dispose(); // Close the current window
+            }
+        });
+
         loadMessages();  // Load messages into the table
 
-        // Full-screen setup
-        GraphicsDevice device = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
-        setUndecorated(true); // Remove window borders and title bar
-        device.setFullScreenWindow(this); // Set the window to full-screen mode
+        // Full-screen setup with taskbar visible (removed full screen setting)
+        setExtendedState(JFrame.MAXIMIZED_BOTH);
+        setVisible(true); // Maximize the window without hiding the taskbar
     }
 
     // Method to load messages from the database

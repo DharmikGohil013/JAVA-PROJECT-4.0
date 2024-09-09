@@ -113,10 +113,11 @@ public class inAdminSection {
         feesSectionButton.addActionListener(e -> new addFeesSection());
         salarySectionButton.addActionListener(e -> new SalarySection());
         principalMessageSendButton.addActionListener(e -> new SendMessageToPrincipal());
-        // principalMessageViewButton.addActionListener(e -> new ViewPrincipalMessageSection());
-        // viewResultButton.addActionListener(e -> new ViewResultSection());
-        // viewFeesDetailsButton.addActionListener(e -> new ViewFeesDetailsSection());
-        // timeTableDetailsChangeButton.addActionListener(e -> new ChangeTimeTableDetailsSection());
+principalMessageViewButton.addActionListener(e -> new AdminMessageView());
+
+        viewResultButton.addActionListener(e -> new ViewResultSection());
+        viewFeesDetailsButton.addActionListener(e -> new ViewFeesDetailSection());
+        timeTableDetailsChangeButton.addActionListener(e -> new ChangeTimetableDetails());
         otherButton.addActionListener(e -> new UniversityUpdates());
         nextExamInfoAddButton.addActionListener(e -> new AddNextExamInfoSection());
         nextHolidayAddButton.addActionListener(e -> new AddNextHolidaySection());
