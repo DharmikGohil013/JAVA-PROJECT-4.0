@@ -1,5 +1,6 @@
 package util;
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
@@ -20,10 +21,14 @@ public class SalarySection extends JFrame {
 
     public SalarySection() {
         setTitle("Salary Section");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(400, 300);
-        setLocationRelativeTo(null);
-    
+
+        // Make the frame full screen
+        GraphicsDevice device = GraphicsEnvironment
+                                    .getLocalGraphicsEnvironment()
+                                    .getDefaultScreenDevice();
+        setUndecorated(true); // Remove window borders and title bar
+        device.setFullScreenWindow(this); // Set full screen mode
+
         // Initialize components
         facultyEmailField = new JTextField(20);
         salaryAmountField = new JTextField(20);
@@ -31,29 +36,46 @@ public class SalarySection extends JFrame {
         paymentMethodComboBox = new JComboBox<>(new String[]{"Cash", "Online", "Check"});
         addButton = new JButton("Add");
         backButton = new JButton("Back");
-    
+
         // Set up the layout
         JPanel panel = new JPanel();
-        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+        panel.setLayout(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.insets = new Insets(10, 10, 10, 10);
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        panel.add(new JLabel("Faculty Email:"), gbc);
+        gbc.gridx = 1;
+        panel.add(facultyEmailField, gbc);
         
-        panel.add(new JLabel("Faculty Email:"));
-        panel.add(facultyEmailField);
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        panel.add(new JLabel("Salary Amount:"), gbc);
+        gbc.gridx = 1;
+        panel.add(salaryAmountField, gbc);
         
-        panel.add(new JLabel("Salary Amount:"));
-        panel.add(salaryAmountField);
+        gbc.gridx = 0;
+        gbc.gridy = 2;
+        panel.add(new JLabel("Payment Date:"), gbc);
+        gbc.gridx = 1;
+        panel.add(paymentDateCalendar, gbc);
         
-        panel.add(new JLabel("Payment Date:"));
-        panel.add(paymentDateCalendar);
+        gbc.gridx = 0;
+        gbc.gridy = 3;
+        panel.add(new JLabel("Payment Method:"), gbc);
+        gbc.gridx = 1;
+        panel.add(paymentMethodComboBox, gbc);
         
-        panel.add(new JLabel("Payment Method:"));
-        panel.add(paymentMethodComboBox);
+        gbc.gridx = 0;
+        gbc.gridy = 4;
+        gbc.gridwidth = 2;
+        panel.add(addButton, gbc);
         
-        panel.add(addButton);
-        panel.add(backButton);
+        gbc.gridy = 5;
+        panel.add(backButton, gbc);
     
         add(panel);
-        
-        
     
         // Initialize database connection
         try {
@@ -78,9 +100,7 @@ public class SalarySection extends JFrame {
                 dispose(); // Close the current window
             }
         });
-        
     }
-    
 
     private void addSalary() {
         // Ensure all UI components are properly initialized
@@ -89,16 +109,16 @@ public class SalarySection extends JFrame {
             JOptionPane.showMessageDialog(this, "UI components or database connection are not initialized properly", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
-    
+
         String facultyEmail = facultyEmailField.getText().trim();
         String salaryAmountStr = salaryAmountField.getText().trim();
         String paymentMethod = (String) paymentMethodComboBox.getSelectedItem();
-    
+
         if (facultyEmail.isEmpty() || salaryAmountStr.isEmpty() || paymentMethod == null) {
             JOptionPane.showMessageDialog(this, "Please fill all fields", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
-    
+
         double salaryAmount;
         try {
             salaryAmount = Double.parseDouble(salaryAmountStr);
@@ -106,12 +126,12 @@ public class SalarySection extends JFrame {
             JOptionPane.showMessageDialog(this, "Invalid salary amount", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
-    
+
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         String formattedDate = dateFormat.format(paymentDateCalendar.getDate());
-    
+
         String query = "INSERT INTO salary (faculty_email, salary_amount, payment_date, payment_method) VALUES (?, ?, ?, ?)";
-    
+
         try (PreparedStatement pstmt = connection.prepareStatement(query)) {
             pstmt.setString(1, facultyEmail);
             pstmt.setDouble(2, salaryAmount);
@@ -127,13 +147,11 @@ public class SalarySection extends JFrame {
             JOptionPane.showMessageDialog(this, "Failed to add salary", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
-    
+
     public static void main(String[] args) {
-        // Ensure that the GUI is created on the Event Dispatch Thread
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                // Create and display the SalarySection frame
                 new SalarySection().setVisible(true);
             }
         });

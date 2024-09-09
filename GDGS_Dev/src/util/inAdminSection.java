@@ -112,7 +112,7 @@ public class inAdminSection {
         showTimeTableButton.addActionListener(e -> new ShowTimeTablesSection());
         feesSectionButton.addActionListener(e -> new addFeesSection());
         salarySectionButton.addActionListener(e -> new SalarySection());
-        // principalMessageSendButton.addActionListener(e -> new SendPrincipalMessageSection());
+        principalMessageSendButton.addActionListener(e -> new SendMessageToPrincipal());
         // principalMessageViewButton.addActionListener(e -> new ViewPrincipalMessageSection());
         // viewResultButton.addActionListener(e -> new ViewResultSection());
         // viewFeesDetailsButton.addActionListener(e -> new ViewFeesDetailsSection());
