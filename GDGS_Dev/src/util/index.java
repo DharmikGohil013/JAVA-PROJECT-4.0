@@ -98,7 +98,7 @@ public class index implements ActionListener {
         public BackgroundPanel() {
             try {
                 // Use double backslashes or forward slashes for the image path
-                backgroundImage = new ImageIcon("D:\\Git Hub\\JAVA-PROJECT-4.0\\GDGS_Dev\\src\\util\\GDS SYSTEM/.png").getImage();
+                backgroundImage = new ImageIcon("D:\\Git Hub\\JAVA-PROJECT-4.0\\GDGS_Dev\\src\\util\\CampusADMINPRO.png").getImage();
                 
                 if (backgroundImage == null) {
                     System.err.println("Failed to load image from path: D:\\Git Hub\\JAVA-PROJECT-4.0\\GDGS_Dev\\GDS SYSTEM.png");
