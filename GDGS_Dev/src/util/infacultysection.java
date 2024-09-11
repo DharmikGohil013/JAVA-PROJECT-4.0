@@ -13,13 +13,14 @@ public class infacultysection {
         // Set layout to null for manual button positioning
         frame.setLayout(null);
 
-        // Create 24 buttons for the Faculty Section
-        JButton[] buttons = new JButton[24];
+        // Create 30 buttons for the Faculty Section
+        JButton[] buttons = new JButton[30];
         String[] buttonNames = {
                 "Profile", "Attendance", "Grades", "Time Table", "Meetings", "Notices",
                 "Research", "Publications", "Faculty Events", "Schedules", "Salary Details", "Leaves",
                 "Department Info", "Upload Material", "Assignments", "Lectures", "Feedback", "Students",
-                "University Updates", "Workshops", "Seminars", "Projects", "Logout", "Exit"
+                "University Updates", "Workshops", "Seminars", "Projects", "Logout", "Exit",
+                "Course Plan", "Supervisions", "Exams", "Grading System", "Classroom Info", "Help Desk"
         };
 
         // Set button size, font, and colors
@@ -30,21 +31,21 @@ public class infacultysection {
         Color textColor = Color.WHITE;
 
         // Initialize each button and apply styles
-        for (int i = 0; i < 24; i++) {
+        for (int i = 0; i < 30; i++) {
             buttons[i] = new JButton(buttonNames[i]);
             buttons[i].setPreferredSize(buttonSize);
             buttons[i].setFont(buttonFont);
             buttons[i].setForeground(textColor);
             buttons[i].setFocusPainted(false); // Remove button border on click
             buttons[i].setCursor(new Cursor(Cursor.HAND_CURSOR)); // Hand cursor
-            if (i < 12) {
-                buttons[i].setBackground(buttonColorPrimary); // Primary color for the first 12 buttons
+            if (i < 15) {
+                buttons[i].setBackground(buttonColorPrimary); // Primary color for the first 15 buttons
             } else {
                 buttons[i].setBackground(buttonColorSecondary); // Secondary color for the rest
             }
         }
 
-        // Position buttons: 4 rows, 6 buttons per row
+        // Position buttons: 5 rows, 6 buttons per row
         int xStart = 200, yStart = 100, xSpacing = 250, ySpacing = 100;
         int row = 0, col = 0;
 

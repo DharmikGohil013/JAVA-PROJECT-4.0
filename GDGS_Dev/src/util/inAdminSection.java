@@ -40,35 +40,18 @@ public class inAdminSection {
         frame.setContentPane(panel);
 
         // Create buttons
-        JButton profileButton = new JButton("Profile");
-        JButton allAdminProfileButton = new JButton("All Admin Profiles");
-        JButton allFacultyDetailsButton = new JButton("All Faculty Details");
-        JButton allStudentDetailsButton = new JButton("All Student Details");
-        JButton newAdminAddButton = new JButton("Add New Admin");
-        JButton newFacultyAddButton = new JButton("Add New Faculty");
-        JButton newStudentAddButton = new JButton("Add New Student");
-        JButton changeAdminDetailsButton = new JButton("Change Admin Details");
-        JButton changeFacultyDetailsButton = new JButton("Change Faculty Details");
-        JButton changeStudentDetailsButton = new JButton("Change Student Details");
-        JButton universityUpdateAddButton = new JButton("Add University Update");
-        JButton viewEventButton = new JButton("View Events");
-        JButton addEventButton = new JButton("Add Event");
-        JButton showTimeTableButton = new JButton("Show Time Table");
-        JButton feesSectionButton = new JButton("Fees Section");
-        JButton salarySectionButton = new JButton("Salary Section");
-        JButton principalMessageSendButton = new JButton("Send Principal Message");
-        JButton principalMessageViewButton = new JButton("View Principal Messages");
-        JButton viewResultButton = new JButton("View Results");
-        JButton viewFeesDetailsButton = new JButton("View Fees Details");
-        JButton timeTableDetailsChangeButton = new JButton("Change Time Table Details");
-        JButton otherButton = new JButton("View University Update");
-        JButton other = new JButton("Other");
-        JButton logoutButton = new JButton("Logout");
-        JButton exitButton = new JButton("Exit");
-        
-        // New buttons
-        JButton nextExamInfoAddButton = new JButton("Add Next Exam Info");
-        JButton nextHolidayAddButton = new JButton("Add Next Holiday");
+        JButton[] buttons = new JButton[36];
+        String[] buttonNames = {
+            "Profile", "All Admin Profiles", "All Faculty Details", "All Student Details",
+            "Add New Admin", "Add New Faculty", "Add New Student", "Change Admin Details",
+            "Change Faculty Details", "Change Student Details", "Add University Update", "View Events",
+            "Add Event", "Show Time Table", "Fees Section", "Salary Section",
+            "Send Principal Message", "View Principal Messages", "View Results",
+            "View Fees Details", "Change Time Table Details", "View University Update", " Add Next Exam Info","Add Next Holiday"
+             ,"Other", 
+            "Course Plan", "Supervisions", "Exams", "Grading System", "Classroom Info",
+            "Help Desk", "New Courses", "Student Records", "Faculty Policies","Logout","Exit"
+        };
 
         // Set button size, font, and colors
         Dimension buttonSize = new Dimension(250, 60);
@@ -76,75 +59,67 @@ public class inAdminSection {
         Color buttonColor = new Color(51, 153, 255);  // Light blue color
         Color textColor = Color.WHITE;
 
-        // Apply style to all buttons
-        JButton[] buttons = {
-            profileButton, allAdminProfileButton, allFacultyDetailsButton, allStudentDetailsButton,
-            newAdminAddButton, newFacultyAddButton, newStudentAddButton, changeAdminDetailsButton,
-            changeFacultyDetailsButton, changeStudentDetailsButton, universityUpdateAddButton,
-            viewEventButton, addEventButton, showTimeTableButton, feesSectionButton,
-            salarySectionButton, principalMessageSendButton, principalMessageViewButton,
-            viewResultButton, viewFeesDetailsButton, timeTableDetailsChangeButton, otherButton,
-            logoutButton, exitButton, nextExamInfoAddButton, nextHolidayAddButton,other
-        };
-
-        for (JButton button : buttons) {
-            button.setPreferredSize(buttonSize);
-            button.setFont(buttonFont);
-            button.setBackground(buttonColor);
-            button.setForeground(textColor);
-            button.setFocusPainted(false); // Remove button border on click
+        // Initialize and style each button
+        for (int i = 0; i < 36; i++) {
+            buttons[i] = new JButton(buttonNames[i]);
+            buttons[i].setPreferredSize(buttonSize);
+            buttons[i].setFont(buttonFont);
+            buttons[i].setBackground(buttonColor);
+            buttons[i].setForeground(textColor);
+            buttons[i].setFocusPainted(false); // Remove button border on click
+            panel.add(buttons[i]);
         }
 
-        // Set button positions (grid layout with manual adjustments)
-        int xStart = 200, yStart = 100, xSpacing = 300, ySpacing = 80;
-        int buttonsPerRow = 4;
+        // Set button positions: 6 rows, 6 buttons per row
+        int xStart = 100, yStart = 100, xSpacing = 270, ySpacing = 80; // Adjusted for spacing
+        int row = 0, col = 0;
 
-        int index = 0;
-        for (int row = 0; row < 7; row++) {  // Increase the row count to accommodate new buttons
-            for (int col = 0; col < buttonsPerRow; col++) {
-                if (index < buttons.length) {
-                    buttons[index].setBounds(xStart + col * xSpacing, yStart + row * ySpacing, buttonSize.width, buttonSize.height);
-                    panel.add(buttons[index]);
-                    index++;
-                }
+        for (int i = 0; i < 36; i++) {
+            JButton button = buttons[i];
+            button.setBounds(xStart + (col * xSpacing), yStart + (row * ySpacing), buttonSize.width, buttonSize.height);
+            col++;
+            if (col == 6) {  // Move to the next row after 6 buttons
+                col = 0;
+                row++;
             }
         }
 
         // Frame settings for logout and exit buttons
-        logoutButton.setBounds(xStart, yStart + 7 * ySpacing, buttonSize.width, buttonSize.height);
-        exitButton.setBounds(xStart + xSpacing, yStart + 7 * ySpacing, buttonSize.width, buttonSize.height);
-
+        JButton logoutButton = buttons[24]; // 25th button in array
+        JButton exitButton = buttons[25];   // 26th button in array
+        
+        
+        // Add logout and exit buttons to the panel
         panel.add(logoutButton);
         panel.add(exitButton);
 
         // Button action listeners
-        profileButton.addActionListener(e -> new ProfileadminSection(email));
-        allAdminProfileButton.addActionListener(e -> new AllAdminProfilesSection());
-        allFacultyDetailsButton.addActionListener(e -> new AllFacultyDetailsSection());
-        allStudentDetailsButton.addActionListener(e -> new StudentDetailsSection());
-        newAdminAddButton.addActionListener(e -> new  AddAdminSection());
-        newFacultyAddButton.addActionListener(e -> new AddFacultySection());
-        newStudentAddButton.addActionListener(e -> new AddStudentSection());
-        changeAdminDetailsButton.addActionListener(e -> new ChangeAdminSection());
-        changeFacultyDetailsButton.addActionListener(e -> new ChangeFacultySection());
-        changeStudentDetailsButton.addActionListener(e -> new ChangeStudentSection());
-        universityUpdateAddButton.addActionListener(e -> new UniversityUpdateSection());
-        viewEventButton.addActionListener(e -> new ViewEvent());
-        addEventButton.addActionListener(e -> new AddadminEventSection());
-        showTimeTableButton.addActionListener(e -> new ShowTimeTablesSection());
-        feesSectionButton.addActionListener(e -> new addFeesSection());
-        salarySectionButton.addActionListener(e -> new SalarySection());
-        principalMessageSendButton.addActionListener(e -> new SendMessageToPrincipal());
-        principalMessageViewButton.addActionListener(e -> new AdminMessageView());
-
-        viewResultButton.addActionListener(e -> new ViewResultSection());
-        viewFeesDetailsButton.addActionListener(e -> new ViewFeesDetailSection());
-        timeTableDetailsChangeButton.addActionListener(e -> new ChangeTimetableDetails());
-        otherButton.addActionListener(e -> new UniversityUpdates());
-        nextExamInfoAddButton.addActionListener(e -> new AddNextExamInfoSection());
-        nextHolidayAddButton.addActionListener(e -> new AddNextHolidaySection());
-        logoutButton.addActionListener(e -> new LogoutPage());
-        exitButton.addActionListener(e -> System.exit(0));
+        buttons[0].addActionListener(e -> new ProfileadminSection(email));
+        buttons[1].addActionListener(e -> new AllAdminProfilesSection());
+        buttons[2].addActionListener(e -> new AllFacultyDetailsSection());
+        buttons[3].addActionListener(e -> new StudentDetailsSection());
+        buttons[4].addActionListener(e -> new AddAdminSection());
+        buttons[5].addActionListener(e -> new AddFacultySection());
+        buttons[6].addActionListener(e -> new AddStudentSection());
+        buttons[7].addActionListener(e -> new ChangeAdminSection());
+        buttons[8].addActionListener(e -> new ChangeFacultySection());
+        buttons[9].addActionListener(e -> new ChangeStudentSection());
+        buttons[10].addActionListener(e -> new UniversityUpdateSection());
+        buttons[11].addActionListener(e -> new ViewEvent());
+        buttons[12].addActionListener(e -> new AddadminEventSection());
+        buttons[13].addActionListener(e -> new ShowTimeTablesSection());
+        buttons[14].addActionListener(e -> new addFeesSection());
+        buttons[15].addActionListener(e -> new SalarySection());
+        buttons[16].addActionListener(e -> new SendMessageToPrincipal());
+        buttons[17].addActionListener(e -> new AdminMessageView());
+        buttons[18].addActionListener(e -> new ViewResultSection());
+        buttons[19].addActionListener(e -> new ViewFeesDetailSection());
+        buttons[20].addActionListener(e -> new ChangeTimetableDetails());
+        buttons[21].addActionListener(e -> new UniversityUpdates());
+        buttons[22].addActionListener(e -> new AddNextExamInfoSection());
+        buttons[23].addActionListener(e -> new AddNextHolidaySection());
+        buttons[34].addActionListener(e -> new LogoutPage());
+        buttons[35].addActionListener(e -> System.exit(0));
 
         // Frame settings
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
