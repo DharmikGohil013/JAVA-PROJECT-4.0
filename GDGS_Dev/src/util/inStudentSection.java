@@ -34,6 +34,7 @@ public class inStudentSection {
         JButton crMenuButton = new JButton("CR Menu");
         JButton logoutButton = new JButton("Logout");
         JButton exitButton = new JButton("Exit");
+        JButton otherButton = new JButton("Other"); // New Other button
 
         // Set button size, font, and colors
         Dimension buttonSize = new Dimension(200, 50);
@@ -46,7 +47,7 @@ public class inStudentSection {
         // Apply style to all buttons
         JButton[] buttons = {profileButton, attendanceButton, feesButton, resultButton, classUpdatesButton, materialLinksButton,
                 eventsButton, universityUpdatesButton, nextExamButton, nextHolidayButton, onlineLectureButton, 
-                timeTableButton, facultyDetailsButton, ccOnlyButton, crMenuButton, logoutButton, exitButton};
+                timeTableButton, facultyDetailsButton, ccOnlyButton, crMenuButton, logoutButton, exitButton, otherButton};
 
         for (JButton button : buttons) {
             button.setPreferredSize(buttonSize);
@@ -74,47 +75,23 @@ public class inStudentSection {
         crMenuButton.setBackground(buttonColorPrimary);
         logoutButton.setBackground(buttonColorPrimary);
         exitButton.setBackground(buttonColorPrimary);
+        otherButton.setBackground(buttonColorPrimary); // Style for new "Other" button
 
-        // Set button positions (adjust manually)
-        int xStart = 300, yStart = 100, ySpacing = 70;
-        profileButton.setBounds(xStart, yStart, buttonSize.width, buttonSize.height);
-        attendanceButton.setBounds(xStart, yStart + ySpacing, buttonSize.width, buttonSize.height);
-        feesButton.setBounds(xStart, yStart + ySpacing * 2, buttonSize.width, buttonSize.height);
-        resultButton.setBounds(xStart, yStart + ySpacing * 3, buttonSize.width, buttonSize.height);
-        classUpdatesButton.setBounds(xStart, yStart + ySpacing * 4, buttonSize.width, buttonSize.height);
-        materialLinksButton.setBounds(xStart, yStart + ySpacing * 5, buttonSize.width, buttonSize.height);
+        // Set button positions in 3 rows of 6 buttons each
+        int xStart = 250, yStart = 100, xSpacing = 250, ySpacing = 100;
+        int row = 0, col = 0;
 
-        eventsButton.setBounds(xStart + 250, yStart, buttonSize.width, buttonSize.height);
-        universityUpdatesButton.setBounds(xStart + 250, yStart + ySpacing, buttonSize.width, buttonSize.height);
-        nextExamButton.setBounds(xStart + 250, yStart + ySpacing * 2, buttonSize.width, buttonSize.height);
-        nextHolidayButton.setBounds(xStart + 250, yStart + ySpacing * 3, buttonSize.width, buttonSize.height);
-        onlineLectureButton.setBounds(xStart + 250, yStart + ySpacing * 4, buttonSize.width, buttonSize.height);
-        timeTableButton.setBounds(xStart + 250, yStart + ySpacing * 5, buttonSize.width, buttonSize.height);      
-        facultyDetailsButton.setBounds(xStart + 250, yStart + ySpacing * 6, buttonSize.width, buttonSize.height); 
-        ccOnlyButton.setBounds(xStart + 250, yStart + ySpacing * 7, buttonSize.width, buttonSize.height); // Position for CC Only button
+        for (int i = 0; i < buttons.length; i++) {
+            JButton button = buttons[i];
+            button.setBounds(xStart + (col * xSpacing), yStart + (row * ySpacing), buttonSize.width, buttonSize.height);
+            frame.add(button);
 
-        crMenuButton.setBounds(xStart + 500, yStart + ySpacing * 5, buttonSize.width, buttonSize.height);
-        logoutButton.setBounds(xStart + 500, yStart, buttonSize.width, buttonSize.height);
-        exitButton.setBounds(xStart + 500, yStart + ySpacing, buttonSize.width, buttonSize.height);
-
-        // Add buttons to the frame
-        frame.add(profileButton);
-        frame.add(attendanceButton);
-        frame.add(feesButton);
-        frame.add(resultButton);
-        frame.add(classUpdatesButton);
-        frame.add(materialLinksButton);
-        frame.add(eventsButton);
-        frame.add(universityUpdatesButton);
-        frame.add(nextExamButton);
-        frame.add(nextHolidayButton);
-        frame.add(onlineLectureButton);
-        frame.add(timeTableButton);       
-        frame.add(facultyDetailsButton);
-        frame.add(ccOnlyButton); // Add new CC Only button
-        frame.add(crMenuButton);
-        frame.add(logoutButton);
-        frame.add(exitButton);
+            col++;
+            if (col == 6) {  // Move to the next row after 6 buttons
+                col = 0;
+                row++;
+            }
+        }
 
         // Button action listeners
         profileButton.addActionListener(e -> new ProfileSection(loggedInEmail));
@@ -122,7 +99,7 @@ public class inStudentSection {
         feesButton.addActionListener(e -> new FeesSection(loggedInEmail));
         resultButton.addActionListener(e -> new ResultSection(loggedInEmail));
         classUpdatesButton.addActionListener(e -> new ClassUpdatesPage(loggedInEmail));
-        materialLinksButton.addActionListener(e-> new MaterialLinksSection(email));
+        materialLinksButton.addActionListener(e -> new MaterialLinksSection(email));
         eventsButton.addActionListener(e -> new ViewEvent());
         universityUpdatesButton.addActionListener(e -> new UniversityUpdates());
         nextExamButton.addActionListener(e -> new DepartmentSelectionPage());
@@ -133,10 +110,10 @@ public class inStudentSection {
         timeTableButton.addActionListener(e -> new TimeTableSection(email));       
         facultyDetailsButton.addActionListener(e -> new FacultyDetailsSection(email));
         ccOnlyButton.addActionListener(e -> new CCSection(email)); // Action for CC Only button
-
         crMenuButton.addActionListener(e -> new CRSectionMenu(email));
         logoutButton.addActionListener(e -> new LogoutPage());
-        exitButton.addActionListener(e-> new ExitPage());
+        exitButton.addActionListener(e -> new ExitPage());
+       // otherButton.addActionListener(e -> new OtherSection()); // Action for new "Other" button
 
         // Frame settings
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

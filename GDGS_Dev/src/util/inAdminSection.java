@@ -1,22 +1,43 @@
 package util;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
 
 public class inAdminSection {
 
     JFrame frame;
     String loggedInEmail;  // Store the logged-in admin's email
+    Image backgroundImage;
 
     public inAdminSection(String email) {
         loggedInEmail = email;  // Get email from login section
 
         frame = new JFrame("Admin Section");
 
+        // Load the background image from an absolute path
+        try {
+            backgroundImage = ImageIO.read(new File("D:\\Git Hub\\JAVA-PROJECT-4.0\\GDGS_Dev\\src\\util\\CampusADMINPRO (2).png"));  // Absolute path
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        // Set a custom JPanel to draw the background
+        JPanel panel = new JPanel() {
+            @Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                if (backgroundImage != null) {
+                    g.drawImage(backgroundImage, 0, 0, getWidth(), getHeight(), this);  // Stretch the background to fit the panel
+                }
+            }
+        };
+
         // Set the layout to null for manual positioning
-        frame.setLayout(null);
+        panel.setLayout(null);
+        frame.setContentPane(panel);
 
         // Create buttons
         JButton profileButton = new JButton("Profile");
@@ -41,6 +62,7 @@ public class inAdminSection {
         JButton viewFeesDetailsButton = new JButton("View Fees Details");
         JButton timeTableDetailsChangeButton = new JButton("Change Time Table Details");
         JButton otherButton = new JButton("View University Update");
+        JButton other = new JButton("Other");
         JButton logoutButton = new JButton("Logout");
         JButton exitButton = new JButton("Exit");
         
@@ -62,7 +84,7 @@ public class inAdminSection {
             viewEventButton, addEventButton, showTimeTableButton, feesSectionButton,
             salarySectionButton, principalMessageSendButton, principalMessageViewButton,
             viewResultButton, viewFeesDetailsButton, timeTableDetailsChangeButton, otherButton,
-            logoutButton, exitButton, nextExamInfoAddButton, nextHolidayAddButton
+            logoutButton, exitButton, nextExamInfoAddButton, nextHolidayAddButton,other
         };
 
         for (JButton button : buttons) {
@@ -82,7 +104,7 @@ public class inAdminSection {
             for (int col = 0; col < buttonsPerRow; col++) {
                 if (index < buttons.length) {
                     buttons[index].setBounds(xStart + col * xSpacing, yStart + row * ySpacing, buttonSize.width, buttonSize.height);
-                    frame.add(buttons[index]);
+                    panel.add(buttons[index]);
                     index++;
                 }
             }
@@ -92,8 +114,8 @@ public class inAdminSection {
         logoutButton.setBounds(xStart, yStart + 7 * ySpacing, buttonSize.width, buttonSize.height);
         exitButton.setBounds(xStart + xSpacing, yStart + 7 * ySpacing, buttonSize.width, buttonSize.height);
 
-        frame.add(logoutButton);
-        frame.add(exitButton);
+        panel.add(logoutButton);
+        panel.add(exitButton);
 
         // Button action listeners
         profileButton.addActionListener(e -> new ProfileadminSection(email));
@@ -113,7 +135,7 @@ public class inAdminSection {
         feesSectionButton.addActionListener(e -> new addFeesSection());
         salarySectionButton.addActionListener(e -> new SalarySection());
         principalMessageSendButton.addActionListener(e -> new SendMessageToPrincipal());
-principalMessageViewButton.addActionListener(e -> new AdminMessageView());
+        principalMessageViewButton.addActionListener(e -> new AdminMessageView());
 
         viewResultButton.addActionListener(e -> new ViewResultSection());
         viewFeesDetailsButton.addActionListener(e -> new ViewFeesDetailSection());

@@ -108,9 +108,13 @@ public class ChangeTimetableDetails {
 
         // Back button action (to implement navigation logic, if required)
         backButton.addActionListener(new ActionListener() {
+            
             public void actionPerformed(ActionEvent e) {
+                
                 // Implement back action logic here (e.g., go to a previous screen)
                 JOptionPane.showMessageDialog(frame, "Back button clicked!");
+                new ShowTimeTablesSection();
+                
             }
         });
 

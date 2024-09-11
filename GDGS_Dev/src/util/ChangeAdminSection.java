@@ -75,7 +75,7 @@ public class ChangeAdminSection extends JFrame {
         backButton = new JButton("Back");
         backButton.addActionListener(e -> {
             // Assuming you have a method to return to the previous screen
-            new AddStudentSection();
+            
             dispose();
         });
 

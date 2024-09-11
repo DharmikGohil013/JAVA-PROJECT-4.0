@@ -1,21 +1,44 @@
 package util;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
 import java.sql.*;
 
 public class ProfileadminSection {
 
     JFrame frame;
     String loggedInEmail;  // Store the logged-in admin's email
+    Image backgroundImage; // Background image
 
     public ProfileadminSection(String email) {
         loggedInEmail = email;  // Get email from login section
 
         frame = new JFrame("Admin Profile");
-        frame.setLayout(null);
+
+        // Load the background image
+        try {
+            backgroundImage = ImageIO.read(new File("D:\\Git Hub\\JAVA-PROJECT-4.0\\GDGS_Dev\\src\\util\\Profile.png"));  // Update with your image path
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        // Create a custom JPanel to display the background image
+        JPanel panel = new JPanel() {
+            @Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                if (backgroundImage != null) {
+                    g.drawImage(backgroundImage, 0, 0, getWidth(), getHeight(), this);
+                }
+            }
+        };
+
+        panel.setLayout(null);  // Use null layout for manual component placement
+        frame.setContentPane(panel);
 
         // Create labels and text fields
         JLabel nameLabel = new JLabel("Name:");
@@ -52,16 +75,16 @@ public class ProfileadminSection {
         JButton backButton = new JButton("Back");
         backButton.setBounds(1200, 900, 100, 50);  // Bottom-right corner
 
-        // Add components to the frame
-        frame.add(nameLabel);
-        frame.add(nameField);
-        frame.add(emailLabel);
-        frame.add(emailField);
-        frame.add(phoneLabel);
-        frame.add(phoneField);
-        frame.add(passwordLabel);
-        frame.add(passwordField);
-        frame.add(backButton);
+        // Add components to the panel
+        panel.add(nameLabel);
+        panel.add(nameField);
+        panel.add(emailLabel);
+        panel.add(emailField);
+        panel.add(phoneLabel);
+        panel.add(phoneField);
+        panel.add(passwordLabel);
+        panel.add(passwordField);
+        panel.add(backButton);
 
         // Fetch and display admin profile information
         fetchProfileInfo(nameField, emailField, phoneField, passwordField);

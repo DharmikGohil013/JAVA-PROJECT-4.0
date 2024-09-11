@@ -39,7 +39,7 @@ public class StudentDetailsTable {
         // Button action listener
         backButton.addActionListener(e -> {
             frame.dispose();  // Close the current StudentDetailsTable window
-            new StudentDetailsSection();  // Return to the department selection section
+              // Return to the department selection section
         });
 
         // Frame settings

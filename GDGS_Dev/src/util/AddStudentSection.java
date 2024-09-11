@@ -90,7 +90,7 @@ public class AddStudentSection extends JFrame {
         // Back button
         backButton = new JButton("Back");
         backButton.addActionListener(e -> {
-            
+            dispose();
             // If you want to close the application
             // System.exit(0);
     

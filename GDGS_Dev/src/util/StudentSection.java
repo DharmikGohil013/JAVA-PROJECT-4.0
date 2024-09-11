@@ -29,7 +29,7 @@ public class StudentSection implements ActionListener {
         emailField.setBorder(new LineBorder(Color.GRAY, 2));
         emailField.setForeground(Color.BLACK);
 
-        passwordField.setBounds(400, 530, 400, 50);
+        passwordField.setBounds(400, 560, 400, 50);
         passwordField.setFont(new Font("Arial", Font.PLAIN, 24));
         passwordField.setBackground(Color.WHITE);
         passwordField.setBorder(new LineBorder(Color.GRAY, 2));
