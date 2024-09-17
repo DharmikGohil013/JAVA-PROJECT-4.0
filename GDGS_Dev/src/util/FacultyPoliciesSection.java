@@ -63,7 +63,7 @@ new EditFacultyPoliciesSection(policiesTextArea.getText(), policyId);
 
         // Frame settings
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(800, 600);  // Set frame size to something manageable
+        frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         frame.setVisible(true);
     }
 

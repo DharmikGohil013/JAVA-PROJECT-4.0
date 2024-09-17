@@ -2,6 +2,7 @@ package util;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.image.ImageObserver;
 import java.io.File;
 import java.sql.*;
 import java.util.ArrayList;
@@ -24,10 +25,10 @@ public class StudentEventGallery {
 
         // Fetch images from the database for the given student ID
         ArrayList<String> imagePaths = fetchEventPhotos(studentId);
-        
+
         // Add images to the gallery panel
         for (String imagePath : imagePaths) {
-            JLabel imageLabel = new JLabel(new ImageIcon(imagePath));
+            JLabel imageLabel = createImageLabel(imagePath);
             galleryPanel.add(imageLabel);
         }
 
@@ -35,14 +36,55 @@ public class StudentEventGallery {
         JButton uploadButton = new JButton("Add New Photo");
         uploadButton.addActionListener(e -> uploadNewPhoto(studentId));
 
-        // Add the scrollable gallery and button to the frame
+        // Create a 'Back' button to return to the previous screen
+        JButton backButton = new JButton("Back");
+        backButton.addActionListener(e -> {
+            frame.dispose(); // Close the current frame
+            // Open the previous screen, replace with actual screen
+          // Assuming PreviousScreen is a class for the previous page
+        });
+
+        // Add the scrollable gallery and buttons to the frame
+        JPanel buttonPanel = new JPanel();
+        buttonPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
+        buttonPanel.add(uploadButton);
+        buttonPanel.add(backButton);
+
         frame.add(scrollPane, BorderLayout.CENTER);
-        frame.add(uploadButton, BorderLayout.SOUTH);
+        frame.add(buttonPanel, BorderLayout.SOUTH);
 
         // Frame settings
-        frame.setSize(800, 600);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         frame.setVisible(true);
+    }
+
+    // Create a JLabel with a scaled image and creative styling
+    private JLabel createImageLabel(String imagePath) {
+        ImageIcon imageIcon = new ImageIcon(imagePath);
+        Image image = imageIcon.getImage(); // Get the original image
+        
+        if (image == null) {
+            System.err.println("Image could not be loaded from path: " + imagePath);
+            return new JLabel("Image not found");
+        }
+        
+        // Resize the image to 300x300
+        Image scaledImage = image.getScaledInstance(300, 300, Image.SCALE_SMOOTH);
+
+        // Create a label with a border and rounded corners
+        JLabel imageLabel = new JLabel(new ImageIcon(scaledImage));
+        imageLabel.setOpaque(true);
+        imageLabel.setBackground(Color.WHITE);
+        imageLabel.setBorder(BorderFactory.createLineBorder(Color.GRAY, 1)); // Add a border
+
+        // Add rounded corners
+        imageLabel.setBorder(BorderFactory.createCompoundBorder(
+                BorderFactory.createLineBorder(Color.GRAY, 1),
+                BorderFactory.createEmptyBorder(10, 10, 10, 10)
+        ));
+
+        return imageLabel;
     }
 
     // Fetch event photos for the student from the database
@@ -50,7 +92,7 @@ public class StudentEventGallery {
         ArrayList<String> photoPaths = new ArrayList<>();
         String url = "jdbc:mysql://localhost:3306/test_db"; // Update with your DB details
         String user = "root";
-        String password = "your_password";
+        String password = "DHARMIKgohil@2006";
 
         String query = "SELECT photo_path FROM student_event_photos WHERE student_id = ?";
 
@@ -62,7 +104,13 @@ public class StudentEventGallery {
 
             while (rs.next()) {
                 String photoPath = rs.getString("photo_path");
-                photoPaths.add(photoPath);
+                
+                // Verify if the file exists
+                if (new File(photoPath).exists()) {
+                    photoPaths.add(photoPath);
+                } else {
+                    System.err.println("File does not exist at path: " + photoPath);
+                }
             }
 
         } catch (SQLException e) {
@@ -88,7 +136,7 @@ public class StudentEventGallery {
             galleryPanel.removeAll();
             ArrayList<String> imagePaths = fetchEventPhotos(studentId);
             for (String imagePath : imagePaths) {
-                JLabel imageLabel = new JLabel(new ImageIcon(imagePath));
+                JLabel imageLabel = createImageLabel(imagePath);
                 galleryPanel.add(imageLabel);
             }
             galleryPanel.revalidate();
@@ -100,7 +148,7 @@ public class StudentEventGallery {
     private void savePhotoToDatabase(int studentId, String photoPath) {
         String url = "jdbc:mysql://localhost:3306/test_db";
         String user = "root";
-        String password = "your_password";
+        String password = "DHARMIKgohil@2006";
 
         String insertQuery = "INSERT INTO student_event_photos (student_id, event_name, photo_path) VALUES (?, ?, ?)";
 
