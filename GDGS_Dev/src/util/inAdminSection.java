@@ -118,7 +118,11 @@ public class inAdminSection {
         buttons[21].addActionListener(e -> new UniversityUpdates());
         buttons[22].addActionListener(e -> new AddNextExamInfoSection());
         buttons[23].addActionListener(e -> new AddNextHolidaySection());
-        buttons[32].addActionListener(e -> new );
+        buttons[27].addActionListener(e -> new NextExamSection());
+        buttons[28].addActionListener(e -> new GradingSystemInfo());
+        buttons[30].addActionListener(e -> new HelpSection());
+        buttons[29].addActionListener(e -> new ClassroomInformation());
+        buttons[31].addActionListener(e -> new NewCourseSection());
 // Assuming studentId is available
 int studentId = 1;  // Replace with the actual student ID
 
