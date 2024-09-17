@@ -118,6 +118,8 @@ public class inAdminSection {
         buttons[21].addActionListener(e -> new UniversityUpdates());
         buttons[22].addActionListener(e -> new AddNextExamInfoSection());
         buttons[23].addActionListener(e -> new AddNextHolidaySection());
+        buttons[22].addActionListener(e -> new StudentEventGallery());
+        buttons[33].addActionListener(e-> new FacultyPoliciesSection());
         buttons[34].addActionListener(e -> new LogoutPage());
         buttons[35].addActionListener(e -> System.exit(0));
 
