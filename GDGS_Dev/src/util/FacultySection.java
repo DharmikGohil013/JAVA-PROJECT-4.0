@@ -74,7 +74,7 @@ public void actionPerformed(ActionEvent e) {
         if (validateAdminLogin(email, password)) {
             // On successful login, open the HelloWorldPage
             frame.dispose();  // Close the current AdminSection window
-            new infacultysection();  // Open the Hello World page
+            new infacultysection(email);  // Open the Hello World page
         } else {
             JOptionPane.showMessageDialog(null, "Invalid email or password");
         }

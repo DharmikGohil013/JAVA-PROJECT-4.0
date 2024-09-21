@@ -9,7 +9,7 @@ import java.io.IOException;
 public class infacultysection extends JFrame {
     private Image backgroundImage;
 
-    public infacultysection() {
+    public infacultysection(String email) {
         // Load the background image
         try {
             backgroundImage = ImageIO.read(new File("D:\\Git Hub\\JAVA-PROJECT-4.0\\GDGS_Dev\\src\\util\\faculty1.png"));  // Absolute path
@@ -78,6 +78,7 @@ public class infacultysection extends JFrame {
                 row++;
             }
         }
+        buttons[0].addActionListener(e -> new ProfilefacultySection(email));
 
         // Add the panel to the frame
         add(panel);
@@ -89,6 +90,6 @@ public class infacultysection extends JFrame {
     }
 
     public static void main(String[] args) {
-        new infacultysection();  // Initialize the Faculty Section
+        new infacultysection("faculty001@xyz.edu.in");  // Initialize the Faculty Section
     }
 }
