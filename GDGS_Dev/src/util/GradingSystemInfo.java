@@ -1,5 +1,4 @@
 package util;
-
 import javax.swing.*;
 import java.awt.*;
 
@@ -29,7 +28,6 @@ public class GradingSystemInfo {
         frame.setVisible(true);
     }
 
-    
     private String getGradingSystemInfo() {
         return String.format(
             "Grading System Information\n\n" +
@@ -65,5 +63,4 @@ public class GradingSystemInfo {
             "For accurate calculations, ensure that the credits for each subject and the grade points are correctly recorded. Regularly update your SGPA to track your semester performance and calculate CGPA to monitor your overall academic progress."
         );
     }
-    
 }

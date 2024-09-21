@@ -1,17 +1,35 @@
 package util;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.io.File;
+import java.io.IOException;
 
-public class infacultysection {
-    JFrame frame;
+public class infacultysection extends JFrame {
+    private Image backgroundImage;
 
     public infacultysection() {
-        // Initialize the frame
-        frame = new JFrame("Faculty Section");
+        // Load the background image
+        try {
+            backgroundImage = ImageIO.read(new File("D:\\Git Hub\\JAVA-PROJECT-4.0\\GDGS_Dev\\src\\util\\faculty1.png"));  // Absolute path
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
-        // Set layout to null for manual button positioning
-        frame.setLayout(null);
+        // Create a custom JPanel for the background
+        JPanel panel = new JPanel() {
+            @Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                // Draw the background image
+                if (backgroundImage != null) {
+                    g.drawImage(backgroundImage, 0, 0, getWidth(), getHeight(), this);
+                }
+            }
+        };
+
+        panel.setLayout(null); // Set layout to null for manual button positioning
 
         // Create 30 buttons for the Faculty Section
         JButton[] buttons = new JButton[30];
@@ -52,7 +70,7 @@ public class infacultysection {
         for (int i = 0; i < buttons.length; i++) {
             JButton button = buttons[i];
             button.setBounds(xStart + (col * xSpacing), yStart + (row * ySpacing), buttonSize.width, buttonSize.height);
-            frame.add(button);
+            panel.add(button); // Add buttons to the panel
 
             col++;
             if (col == 6) {  // Move to the next row after 6 buttons
@@ -61,10 +79,13 @@ public class infacultysection {
             }
         }
 
+        // Add the panel to the frame
+        add(panel);
+
         // Frame settings
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setExtendedState(JFrame.MAXIMIZED_BOTH); // Maximize the window
-        frame.setVisible(true);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setExtendedState(JFrame.MAXIMIZED_BOTH); // Maximize the window
+        setVisible(true);
     }
 
     public static void main(String[] args) {

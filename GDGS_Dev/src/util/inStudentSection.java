@@ -113,6 +113,7 @@ public class inStudentSection {
         crMenuButton.addActionListener(e -> new CRSectionMenu(email));
         logoutButton.addActionListener(e -> new LogoutPage());
         exitButton.addActionListener(e -> new ExitPage());
+        otherButton.addActionListener(e -> new other());
        // otherButton.addActionListener(e -> new OtherSection()); // Action for new "Other" button
 
         // Frame settings

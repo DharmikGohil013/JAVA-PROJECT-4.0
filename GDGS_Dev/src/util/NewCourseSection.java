@@ -21,7 +21,7 @@ public class NewCourseSection {
         frame.setLayout(new BorderLayout());
 
         // Create the panel for adding a new course
-        JPanel addCoursePanel = new JPanel(new GridLayout(4, 2, 10, 10));
+        JPanel addCoursePanel = new JPanel(new GridLayout(5, 2, 10, 10));
         addCoursePanel.setBorder(BorderFactory.createTitledBorder("Add New Course"));
 
         JLabel courseNameLabel = new JLabel("Course Name:");
@@ -34,6 +34,15 @@ public class NewCourseSection {
         JButton addCourseButton = new JButton("Add Course");
         addCourseButton.addActionListener(new AddCourseActionListener());
 
+        JButton backButton = new JButton("Back");
+        backButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Define what should happen on back button click
+                frame.dispose();  // This will close the current window
+            }
+        });
+
         // Add form fields to the panel
         addCoursePanel.add(courseNameLabel);
         addCoursePanel.add(courseNameField);
@@ -43,6 +52,7 @@ public class NewCourseSection {
         addCoursePanel.add(new JScrollPane(courseDescriptionArea));
         addCoursePanel.add(new JLabel(""));  // Empty cell
         addCoursePanel.add(addCourseButton);
+        addCoursePanel.add(backButton); // Add the back button
 
         // Create a table model and table to display the courses
         tableModel = new DefaultTableModel(new String[]{"Course ID", "Course Name", "Duration", "Description"}, 0);
