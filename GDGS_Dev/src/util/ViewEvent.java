@@ -12,7 +12,7 @@ public class ViewEvent {
 
     JFrame eventFrame;
 
-    public ViewEvent() {
+    public  ViewEvent() {
         eventFrame = new JFrame("View Events");
 
         // Create table model for the events

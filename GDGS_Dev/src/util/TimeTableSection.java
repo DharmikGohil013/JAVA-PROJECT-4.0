@@ -149,7 +149,7 @@ public class TimeTableSection {
     }
 
     private String getDepartmentByEmail(String email) {
-        String[] tables = {"student_ce", "student_cs", "student_cd", "student_it"};
+        String[] tables = {"student_ce", "student_cs", "student_cd", "student_it" , "faculty"};
         String department = null;
 
         try (Connection conn = DBConnection.getConnection()) {
