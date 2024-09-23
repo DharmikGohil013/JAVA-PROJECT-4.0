@@ -87,6 +87,8 @@ public class infacultysection extends JFrame {
         buttons[8].addActionListener(e-> new ViewEvent());
         buttons[9].addActionListener(e-> new Schedules());
         buttons[10].addActionListener(e-> new FacultySalarySection(email));
+        buttons[11].addActionListener(e-> new FacultyLeaveSystem(email));
+        buttons[12].addActionListener(e-> new departmentinfo());
 
         // Add the panel to the frame
         add(panel);

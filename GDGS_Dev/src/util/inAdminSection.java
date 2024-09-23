@@ -118,7 +118,7 @@ public class inAdminSection {
         buttons[21].addActionListener(e -> new UniversityUpdates());
         buttons[22].addActionListener(e -> new AddNextExamInfoSection());
         buttons[23].addActionListener(e -> new AddNextHolidaySection());
-        buttons[24].addActionListener(e -> new other());
+        buttons[24].addActionListener(e -> new AdminLeaveApproval());
         buttons[25].addActionListener(e -> new courceplan());
         buttons[26].addActionListener(e -> new supervision());
         buttons[27].addActionListener(e -> new NextExamSection());
