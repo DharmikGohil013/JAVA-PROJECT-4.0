@@ -105,6 +105,10 @@ public class infacultysection extends JFrame {
         buttons[23].addActionListener(e-> new ExitPage());
         buttons[24].addActionListener(e-> new courceplaning());
        buttons[25].addActionListener(e-> new supervision());
+       buttons[26].addActionListener(e-> new ExamSection());
+       buttons[27].addActionListener(e-> new facultyGradingSystemInfo());
+       buttons[28].addActionListener(e-> new Classroom());
+       buttons[29].addActionListener(e-> new HelpSection());
         
 
       
