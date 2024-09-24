@@ -90,6 +90,10 @@ public class infacultysection extends JFrame {
         buttons[11].addActionListener(e-> new FacultyLeaveSystem(email));
         buttons[12].addActionListener(e-> new departmentinfo());
         buttons[13].addActionListener(e-> new UploadMaterialSection(email));
+        buttons[14].addActionListener(e-> new FacultyAssignmentUpload());
+        buttons[15].addActionListener(e-> new lectures());
+        buttons[16].addActionListener(e-> new feedback());
+        buttons[17].addActionListener(e-> new FacultyStudentSection(email));
 
         // Add the panel to the frame
         add(panel);

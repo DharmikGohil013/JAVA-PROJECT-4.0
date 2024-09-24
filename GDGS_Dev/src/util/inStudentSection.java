@@ -34,7 +34,7 @@ public class inStudentSection {
         JButton crMenuButton = new JButton("CR Menu");
         JButton logoutButton = new JButton("Logout");
         JButton exitButton = new JButton("Exit");
-        JButton otherButton = new JButton("Other"); // New Other button
+        JButton otherButton = new JButton("Assigment Submission"); // New Other button
 
         // Set button size, font, and colors
         Dimension buttonSize = new Dimension(200, 50);
@@ -113,7 +113,7 @@ public class inStudentSection {
         crMenuButton.addActionListener(e -> new CRSectionMenu(email));
         logoutButton.addActionListener(e -> new LogoutPage());
         exitButton.addActionListener(e -> new ExitPage());
-        otherButton.addActionListener(e -> new other());
+        otherButton.addActionListener(e -> new StudentAssignmentSubmission(email));
        // otherButton.addActionListener(e -> new OtherSection()); // Action for new "Other" button
 
         // Frame settings
