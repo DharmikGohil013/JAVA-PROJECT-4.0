@@ -33,7 +33,8 @@ public class infacultysection extends JFrame {
 
         // Create 30 buttons for the Faculty Section
         JButton[] buttons = new JButton[30];
-        String[] buttonNames = {
+        String[] buttonNames = 
+        {
                 "Profile", "Attendance", "Grades", "Time Table", "Meetings", "Notices",
                 "Research", "Publications", "Faculty Events", "Schedules", "Salary Details", "Leaves",
                 "Department Info", "Upload Material", "Assignments", "Lectures", "Feedback", "Students",
@@ -49,7 +50,8 @@ public class infacultysection extends JFrame {
         Color textColor = Color.WHITE;
 
         // Initialize each button and apply styles
-        for (int i = 0; i < 30; i++) {
+        for (int i = 0; i < 30; i++) 
+        {
             buttons[i] = new JButton(buttonNames[i]);
             buttons[i].setPreferredSize(buttonSize);
             buttons[i].setFont(buttonFont);
@@ -63,17 +65,18 @@ public class infacultysection extends JFrame {
             }
         }
 
-        // Position buttons: 5 rows, 6 buttons per row
+       
         int xStart = 200, yStart = 100, xSpacing = 250, ySpacing = 100;
         int row = 0, col = 0;
 
         for (int i = 0; i < buttons.length; i++) {
             JButton button = buttons[i];
             button.setBounds(xStart + (col * xSpacing), yStart + (row * ySpacing), buttonSize.width, buttonSize.height);
-            panel.add(button); // Add buttons to the panel
+            panel.add(button);
 
             col++;
-            if (col == 6) {  // Move to the next row after 6 buttons
+            if (col == 6) 
+            {  
                 col = 0;
                 row++;
             }
@@ -94,17 +97,24 @@ public class infacultysection extends JFrame {
         buttons[15].addActionListener(e-> new lectures());
         buttons[16].addActionListener(e-> new feedback());
         buttons[17].addActionListener(e-> new FacultyStudentSection(email));
+        buttons[18].addActionListener(e-> new UniversityUpdatesSection());
+        buttons[19].addActionListener(e-> new Workshop());
+        buttons[20].addActionListener(e-> new seminar());
+        buttons[21].addActionListener(e-> new project());
+        buttons[22].addActionListener(e-> new LogoutPage());
+        buttons[23].addActionListener(e-> new ExitPage());
+        buttons[24].addActionListener(e-> new courceplaning());
 
-        // Add the panel to the frame
+      
         add(panel);
 
-        // Frame settings
+       
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setExtendedState(JFrame.MAXIMIZED_BOTH); // Maximize the window
+        setExtendedState(JFrame.MAXIMIZED_BOTH);
         setVisible(true);
     }
 
     public static void main(String[] args) {
-        new infacultysection("faculty001@xyz.edu.in");  // Initialize the Faculty Section
+        new infacultysection("faculty001@xyz.edu.in"); 
     }
 }

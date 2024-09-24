@@ -103,7 +103,7 @@ public class index implements ActionListener {
                 if (backgroundImage == null) {
                     System.err.println("Failed to load image from path: D:\\Git Hub\\JAVA-PROJECT-4.0\\GDGS_Dev\\GDS SYSTEM.png");
                 } else {
-                    System.out.println("Image loaded successfully.");
+                    System.out.println("Image loade d successfully.");
                 }
             } catch (Exception e) {
                 System.err.println("Error loading image: " + e.getMessage());
