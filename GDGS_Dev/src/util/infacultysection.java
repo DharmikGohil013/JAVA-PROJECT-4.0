@@ -104,6 +104,8 @@ public class infacultysection extends JFrame {
         buttons[22].addActionListener(e-> new LogoutPage());
         buttons[23].addActionListener(e-> new ExitPage());
         buttons[24].addActionListener(e-> new courceplaning());
+       buttons[25].addActionListener(e-> new supervision());
+        
 
       
         add(panel);
