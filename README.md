@@ -73,8 +73,8 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 ## Contact
 For any questions or suggestions, feel free to reach out:
-- Email: [your-email@example.com](mailto:your-email@example.com)
-- GitHub: [yourusername](https://github.com/yourusername)
+- Email: dharmikgohil395003@gmail.com(mailto:your-email@example.com)
+- GitHub: DHARMIKgohil013(https://github.com/yourusername)
 
 
 ![image](https://github.com/user-attachments/assets/1c0c161a-2382-4755-958d-972124de90a0)
