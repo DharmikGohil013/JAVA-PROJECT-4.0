@@ -37,9 +37,9 @@ public class infacultysection extends JFrame {
         {
                 "Profile", "Attendance", "Grades", "Time Table", "Meetings", "Notices",
                 "Research", "Publications", "Faculty Events", "Schedules", "Salary Details", "Leaves",
-                "Department Info", "Upload Material", "Assignments", "Lectures", "Feedback", "Students",
-                "University Updates", "Workshops", "Seminars", "Projects", "Logout", "Exit",
-                "Course Plan", "Supervisions", "Exams", "Grading System", "Classroom Info", "Help Desk"
+                "Department Info", "Upload Material", "Assignments", "Lectures", "View Event", "Students",
+                "University Updates", "Event Atted.", "Seminars", "Projects", "Logout", "Exit",
+                "Holidays", "Supervisions", "Exams", "Grading System", "Classroom Info", "Help Desk"
         };
 
         // Set button size, font, and colors
@@ -95,7 +95,7 @@ public class infacultysection extends JFrame {
         buttons[13].addActionListener(e-> new UploadMaterialSection(email));
         buttons[14].addActionListener(e-> new FacultyAssignmentUpload());
         buttons[15].addActionListener(e-> new lectures());
-        buttons[16].addActionListener(e-> new feedback());
+        buttons[16].addActionListener(e-> new ViewEvent());
         buttons[17].addActionListener(e-> new FacultyStudentSection(email));
         buttons[18].addActionListener(e-> new UniversityUpdatesSection());
         buttons[19].addActionListener(e-> new Workshop());
@@ -103,9 +103,9 @@ public class infacultysection extends JFrame {
         buttons[21].addActionListener(e-> new project());
         buttons[22].addActionListener(e-> new LogoutPage());
         buttons[23].addActionListener(e-> new ExitPage());
-        buttons[24].addActionListener(e-> new courceplaning());
+        buttons[24].addActionListener(e-> new NextHolidaySection());
        buttons[25].addActionListener(e-> new supervision());
-       buttons[26].addActionListener(e-> new ExamSection());
+       buttons[26].addActionListener(e-> new DepartmentSelectionPage());
        buttons[27].addActionListener(e-> new facultyGradingSystemInfo());
        buttons[28].addActionListener(e-> new Classroom());
        buttons[29].addActionListener(e-> new HelpSection());
