@@ -168,6 +168,7 @@ public class FacultyStudentSection1 extends JFrame {
                 String studentEmail = table.getValueAt(i, 0).toString();
                 Boolean isPresent = (Boolean) table.getValueAt(i, 1); // Assuming checkboxes in the second column
 
+                
                 String status = isPresent != null && isPresent ? "Present" : "Absent";
 
                 ps.setString(1, studentEmail);
