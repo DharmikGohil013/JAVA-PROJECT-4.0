@@ -3,9 +3,9 @@ student
 
 ->attendece
 ->result
-->student recored add section
+
 ->notice section add
-->add help desk
+
 
 faculty
 -> salary

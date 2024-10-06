@@ -119,6 +119,8 @@ public class inStudentSection {
         logoutButton.addActionListener(e -> new LogoutPage());
         exitButton.addActionListener(e -> new ExitPage());
         otherButton.addActionListener(e -> new StudentAssignmentSubmission(email));
+        otherButton1.addActionListener(e -> new StudentEventPhotosSection());
+        otherButton2.addActionListener(e -> new HelpSection());
        // otherButton.addActionListener(e -> new OtherSection()); // Action for new "Other" button
 
         // Frame settings
