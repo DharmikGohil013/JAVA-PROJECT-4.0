@@ -36,7 +36,8 @@ public class inStudentSection {
         JButton exitButton = new JButton("Exit");
         JButton otherButton = new JButton("Assigment Submission");
         JButton otherButton1 = new JButton("Student Records");
-        JButton otherButton2 = new JButton("Help Desk"); // New Other button
+        JButton otherButton2 = new JButton("Help Desk");
+        JButton otherButton3 = new JButton("Notice"); // New Other button
 
         // Set button size, font, and colors
         Dimension buttonSize = new Dimension(200, 50);
@@ -49,7 +50,7 @@ public class inStudentSection {
         // Apply style to all buttons
         JButton[] buttons = {profileButton, attendanceButton, feesButton, resultButton, classUpdatesButton, materialLinksButton,
                 eventsButton, universityUpdatesButton, nextExamButton, nextHolidayButton, onlineLectureButton, 
-                timeTableButton, facultyDetailsButton, ccOnlyButton, crMenuButton, logoutButton, exitButton, otherButton,otherButton1,otherButton2};
+                timeTableButton, facultyDetailsButton, ccOnlyButton, crMenuButton, logoutButton, exitButton, otherButton,otherButton1,otherButton2,otherButton3};
 
         for (JButton button : buttons) {
             button.setPreferredSize(buttonSize);
@@ -80,7 +81,8 @@ public class inStudentSection {
         
         otherButton.setBackground(buttonColorPrimary);
         otherButton1.setBackground(buttonColorPrimary);
-        otherButton2.setBackground(buttonColorPrimary); // Style for new "Other" button
+         otherButton2.setBackground(buttonColorPrimary);// Style for new "Other" button
+         otherButton3.setBackground(buttonColorPrimary);
 
         // Set button positions in 3 rows of 6 buttons each
         int xStart = 250, yStart = 100, xSpacing = 250, ySpacing = 100;
@@ -121,6 +123,7 @@ public class inStudentSection {
         otherButton.addActionListener(e -> new StudentAssignmentSubmission(email));
         otherButton1.addActionListener(e -> new StudentEventPhotosSection());
         otherButton2.addActionListener(e -> new HelpSection());
+        otherButton3.addActionListener(e -> new StudentNoticeSection());
        // otherButton.addActionListener(e -> new OtherSection()); // Action for new "Other" button
 
         // Frame settings

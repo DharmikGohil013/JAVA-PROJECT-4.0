@@ -49,7 +49,7 @@ public class inAdminSection {
             "Send Principal Message", "View Principal Messages", "View Results",
             "View Fees Details", "Change Time Table Details", "View University Update", " Add Next Exam Info","Add Next Holiday"
              ,"Other", 
-            "Course Plan", "Supervisions", "Exams", "Grading System", "Classroom Info",
+            "Course Plan", "Notice", "Exams", "Grading System", "Classroom Info",
             "Help Desk", "New Courses", "Student Records", "Faculty Policies","Logout","Exit"
         };
 
@@ -120,7 +120,7 @@ public class inAdminSection {
         buttons[23].addActionListener(e -> new AddNextHolidaySection());
         buttons[24].addActionListener(e -> new AdminLeaveApproval());
         buttons[25].addActionListener(e -> new courceplan());
-        buttons[26].addActionListener(e -> new supervision());
+        buttons[26].addActionListener(e -> new FacultyNoticeSection());
         buttons[27].addActionListener(e -> new NextExamSection());
         buttons[28].addActionListener(e -> new GradingSystemInfo());
         buttons[30].addActionListener(e -> new HelpSection());

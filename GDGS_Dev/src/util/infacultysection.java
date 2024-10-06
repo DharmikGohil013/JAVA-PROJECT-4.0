@@ -85,7 +85,7 @@ public class infacultysection extends JFrame {
         buttons[1].addActionListener(e -> new FacultyStudentSection1(email));
         buttons[3].addActionListener(e -> new TimeTableSection(email));
         buttons[4].addActionListener(e-> new facultymetting());
-        buttons[5].addActionListener(e -> new notis());
+        buttons[5].addActionListener(e -> new FacultyNoticeSection());
         buttons[6].addActionListener(e-> new research());
         buttons[7].addActionListener(e-> new publication());
         buttons[8].addActionListener(e-> new ViewEvent());
