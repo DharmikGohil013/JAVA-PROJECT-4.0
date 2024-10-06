@@ -34,7 +34,9 @@ public class inStudentSection {
         JButton crMenuButton = new JButton("CR Menu");
         JButton logoutButton = new JButton("Logout");
         JButton exitButton = new JButton("Exit");
-        JButton otherButton = new JButton("Assigment Submission"); // New Other button
+        JButton otherButton = new JButton("Assigment Submission");
+        JButton otherButton1 = new JButton("Student Records");
+        JButton otherButton2 = new JButton("Help Desk"); // New Other button
 
         // Set button size, font, and colors
         Dimension buttonSize = new Dimension(200, 50);
@@ -47,7 +49,7 @@ public class inStudentSection {
         // Apply style to all buttons
         JButton[] buttons = {profileButton, attendanceButton, feesButton, resultButton, classUpdatesButton, materialLinksButton,
                 eventsButton, universityUpdatesButton, nextExamButton, nextHolidayButton, onlineLectureButton, 
-                timeTableButton, facultyDetailsButton, ccOnlyButton, crMenuButton, logoutButton, exitButton, otherButton};
+                timeTableButton, facultyDetailsButton, ccOnlyButton, crMenuButton, logoutButton, exitButton, otherButton,otherButton1,otherButton2};
 
         for (JButton button : buttons) {
             button.setPreferredSize(buttonSize);
@@ -75,7 +77,10 @@ public class inStudentSection {
         crMenuButton.setBackground(buttonColorPrimary);
         logoutButton.setBackground(buttonColorPrimary);
         exitButton.setBackground(buttonColorPrimary);
-        otherButton.setBackground(buttonColorPrimary); // Style for new "Other" button
+        
+        otherButton.setBackground(buttonColorPrimary);
+        otherButton1.setBackground(buttonColorPrimary);
+        otherButton2.setBackground(buttonColorPrimary); // Style for new "Other" button
 
         // Set button positions in 3 rows of 6 buttons each
         int xStart = 250, yStart = 100, xSpacing = 250, ySpacing = 100;
