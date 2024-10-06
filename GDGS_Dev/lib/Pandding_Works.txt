@@ -1,0 +1,25 @@
+student 
+
+
+->attendece
+->result
+->student recored add section
+->notice section add
+->add help desk
+
+faculty
+-> salary
+->principal section add 
+->principal to admin messages
+->admin to principal messges
+->notice section repair
+->sedule add to do list
+->event attence
+
+
+admin
+->view result changes add back button and screen size
+->view fees and back and full ss
+->changes time table repair
+->other name changes faculty leve 
+-> ->notice section add
