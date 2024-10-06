@@ -46,13 +46,8 @@ public class StudentSection implements ActionListener {
         loginButton.addActionListener(this);
         
         // Styling for Back button
-        backButton.setBounds(1700, 850, 100, 50);
-        backButton.setFont(new Font("Arial", Font.BOLD, 20));
-        backButton.setBackground(new Color(255, 51, 51));
-        backButton.setForeground(Color.WHITE);
-        backButton.setFocusPainted(false);
-        backButton.setBorder(new LineBorder(new Color(204, 0, 0), 3));
-        backButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        backButton.setBounds(1800, 900, 100, 50);
+        backButton.setFont(new Font("Arial", Font.PLAIN, 20));
         backButton.addActionListener(this);
 
         // Add components to frame
