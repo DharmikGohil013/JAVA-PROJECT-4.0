@@ -4,15 +4,12 @@ student
 ->attendece
 ->result
 
-->notice section add
-
 
 faculty
 -> salary
 ->principal section add 
 ->principal to admin messages
 ->admin to principal messges
-->notice section repair
 ->sedule add to do list
 ->event attence
 
@@ -22,4 +19,3 @@ admin
 ->view fees and back and full ss
 ->changes time table repair
 ->other name changes faculty leve 
--> ->notice section add
