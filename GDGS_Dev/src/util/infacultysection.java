@@ -37,7 +37,7 @@ public class infacultysection extends JFrame {
         {
                 "Profile", "Attendance", "Grades", "Time Table", "Meetings", "Notices",
                 "Research", "Publications", "Faculty Events", "Schedules", "Salary Details", "Leaves",
-                "Department Info", "Upload Material", "Assignments", "Lectures", "View Event", "Students",
+                "Result", "Upload Material", "Assignments", "Lectures", "View Event", "Students",
                 "University Updates", "Event Atted.", "Principal Section", "Projects", "Logout", "Exit",
                 "Holidays", "Supervisions", "Exams", "Grading System", "Classroom Info", "Help Desk"
         };
@@ -92,7 +92,7 @@ public class infacultysection extends JFrame {
         buttons[9].addActionListener(e-> new toFacultyScheduleSection());
         buttons[10].addActionListener(e-> new FacultySalarySection(email));
         buttons[11].addActionListener(e-> new FacultyLeaveSystem(email));
-        buttons[12].addActionListener(e-> new departmentinfo());
+        buttons[12].addActionListener(e-> new toFacultyResultSection());
         buttons[13].addActionListener(e-> new UploadMaterialSection(email));
         buttons[14].addActionListener(e-> new FacultyAssignmentUpload());
         buttons[15].addActionListener(e-> new lectures());
