@@ -65,7 +65,6 @@ public class infacultysection extends JFrame {
             }
         }
 
-       
         int xStart = 200, yStart = 100, xSpacing = 250, ySpacing = 100;
         int row = 0, col = 0;
 
@@ -81,8 +80,14 @@ public class infacultysection extends JFrame {
                 row++;
             }
         }
+        
+        // Add action listeners for each button
         buttons[0].addActionListener(e -> new ProfilefacultySection(email));
-        buttons[1].addActionListener(e -> new FacultyStudentSection1(email));
+        
+        // Connect the second button to AttendanceSystem
+        buttons[1].addActionListener(e -> new AttendanceSystem(email));
+
+       // buttons[2].addActionListener(e -> new GradesSection(email)); // Add an action for the "Grades" button
         buttons[3].addActionListener(e -> new TimeTableSection(email));
         buttons[4].addActionListener(e-> new facultymetting());
         buttons[5].addActionListener(e -> new FacultyNoticeSection());
@@ -105,17 +110,14 @@ public class infacultysection extends JFrame {
         buttons[22].addActionListener(e-> new LogoutPage());
         buttons[23].addActionListener(e-> new ExitPage());
         buttons[24].addActionListener(e-> new NextHolidaySection());
-       buttons[25].addActionListener(e-> new supervision());
-       buttons[26].addActionListener(e-> new DepartmentSelectionPage());
-       buttons[27].addActionListener(e-> new facultyGradingSystemInfo());
-       buttons[28].addActionListener(e-> new Classroom());
-       buttons[29].addActionListener(e-> new HelpSection());
-        
+        buttons[25].addActionListener(e-> new supervision());
+        buttons[26].addActionListener(e-> new DepartmentSelectionPage());
+        buttons[27].addActionListener(e-> new facultyGradingSystemInfo());
+        buttons[28].addActionListener(e-> new Classroom());
+        buttons[29].addActionListener(e-> new HelpSection());
 
-      
         add(panel);
 
-       
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         setVisible(true);

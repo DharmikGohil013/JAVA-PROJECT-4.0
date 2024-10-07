@@ -9,18 +9,16 @@ import java.sql.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-public class AttendanceSystem extends JFrame {
+public class toAttendanceSystem extends JFrame {
     private DefaultTableModel[] tableModels = new DefaultTableModel[4]; // Store table models for each department
     private JComboBox<String> timeComboBox;
     private JButton submitButton;
     private String[] timeSlots = {"9 to 10", "10 to 11", "11 to 12", "1 to 2", "2 to 3", "3 to 4"};
     private String currentDate;
-    private String email; 
-    // Radio buttons for Check All and Uncheck All
-    private JRadioButton checkAllButton;
-    private JRadioButton uncheckAllButton;
+    private String email; // Email of the faculty
 
-    public AttendanceSystem(String email) {
+    // Modify the constructor to accept an email parameter
+    public toAttendanceSystem(String email) {
         this.email = email; // Store the email for later use
         setTitle("Attendance System");
         setSize(800, 600);
@@ -38,6 +36,8 @@ public class AttendanceSystem extends JFrame {
         tabbedPane.addTab("CE", createAttendancePanel("CE", 1));
         tabbedPane.addTab("CS", createAttendancePanel("CS", 2));
         tabbedPane.addTab("CD", createAttendancePanel("CD", 3));
+        tabbedPane.addTab("View Attendance", createViewAttendancePanel()); // New tab for viewing attendance records
+        tabbedPane.addTab("Student Attendance View", createStudentAttendanceViewPanel()); // New tab for student-specific attendance view
 
         // Add components to frame
         add(tabbedPane, BorderLayout.CENTER);
@@ -71,36 +71,110 @@ public class AttendanceSystem extends JFrame {
         return panel;
     }
 
+    private JPanel createViewAttendancePanel() {
+        JPanel panel = new JPanel(new BorderLayout());
+
+        // Create a table for viewing attendance
+        String[] columnNames = {"Email", "Subject Name", "Date", "Time", "Status"};
+        DefaultTableModel attendanceModel = new DefaultTableModel(columnNames, 0);
+        JTable attendanceTable = new JTable(attendanceModel);
+
+        // Load attendance data from the database
+        loadAttendanceData(attendanceModel);
+
+        // Add table to a scroll pane
+        JScrollPane scrollPane = new JScrollPane(attendanceTable);
+        panel.add(scrollPane, BorderLayout.CENTER);
+
+        return panel;
+    }
+
+    private JPanel createStudentAttendanceViewPanel() {
+        JPanel panel = new JPanel(new BorderLayout());
+
+        // Create components to get student email
+        JPanel inputPanel = new JPanel();
+        JTextField emailField = new JTextField(20);
+        JButton fetchButton = new JButton("Fetch Attendance");
+        JLabel lectureCountLabel = new JLabel("Lectures Attended: 0");
+
+        inputPanel.add(new JLabel("Student Email: "));
+        inputPanel.add(emailField);
+        inputPanel.add(fetchButton);
+        inputPanel.add(lectureCountLabel);
+
+        // Add action listener to fetch button
+        fetchButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String studentEmail = emailField.getText();
+                DefaultTableModel studentAttendanceModel = new DefaultTableModel(
+                        new String[]{"Subject Name", "Date", "Time", "Status"}, 0);
+                JTable studentAttendanceTable = new JTable(studentAttendanceModel);
+                JScrollPane scrollPane = new JScrollPane(studentAttendanceTable);
+                panel.add(scrollPane, BorderLayout.CENTER);
+                panel.revalidate();
+
+                // Load attendance data for the specific student email
+                loadStudentAttendanceData(studentEmail, studentAttendanceModel, lectureCountLabel);
+            }
+        });
+
+        panel.add(inputPanel, BorderLayout.NORTH);
+        return panel;
+    }
+
+    private void loadStudentAttendanceData(String studentEmail, DefaultTableModel model, JLabel lectureCountLabel) {
+        String query = "SELECT subject_name, date, time, status FROM it_attendance WHERE student_email = ?";
+        int lectureCount = 0;
+
+        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/test_db", "root", "DHARMIKgohil@2006");
+             PreparedStatement pstmt = conn.prepareStatement(query)) {
+            pstmt.setString(1, studentEmail);
+            ResultSet rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+                model.addRow(new Object[]{
+                        rs.getString("subject_name"),
+                        rs.getDate("date"),
+                        rs.getTime("time"),
+                        rs.getString("status")
+                });
+                // Count attended lectures
+                if ("Present".equalsIgnoreCase(rs.getString("status"))) {
+                    lectureCount++;
+                }
+            }
+            lectureCountLabel.setText("Lectures Attended: " + lectureCount);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void loadAttendanceData(DefaultTableModel model) {
+        String query = "SELECT * FROM it_attendance"; // You can modify to load attendance for specific departments
+        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/test_db", "root", "DHARMIKgohil@2006");
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(query)) {
+
+            while (rs.next()) {
+                model.addRow(new Object[]{
+                        rs.getString("student_email"),
+                        rs.getString("subject_name"),
+                        rs.getDate("date"),
+                        rs.getTime("time"),
+                        rs.getString("status")
+                });
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     private JPanel createBottomPanel() {
         JPanel panel = new JPanel();
-
-        // Create time selection
         timeComboBox = new JComboBox<>(timeSlots);
         submitButton = new JButton("Submit Attendance");
-
-        // Create radio buttons for check/uncheck
-        checkAllButton = new JRadioButton("Check All");
-        uncheckAllButton = new JRadioButton("Uncheck All");
-
-        // Group radio buttons
-        ButtonGroup group = new ButtonGroup();
-        group.add(checkAllButton);
-        group.add(uncheckAllButton);
-
-        // Add action listeners to radio buttons
-        checkAllButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                checkAllCheckboxes(true); // Check all
-            }
-        });
-
-        uncheckAllButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                checkAllCheckboxes(false); // Uncheck all
-            }
-        });
 
         submitButton.addActionListener(new ActionListener() {
             @Override
@@ -109,25 +183,10 @@ public class AttendanceSystem extends JFrame {
             }
         });
 
-        // Layout adjustments
-        panel.setLayout(new FlowLayout());
         panel.add(new JLabel("Select Time: "));
         panel.add(timeComboBox);
-        panel.add(checkAllButton);
-        panel.add(uncheckAllButton);
         panel.add(submitButton);
-
         return panel;
-    }
-
-    private void checkAllCheckboxes(boolean check) {
-        for (DefaultTableModel model : tableModels) {
-            if (model != null) { // Check if the model is not null
-                for (int i = 0; i < model.getRowCount(); i++) {
-                    model.setValueAt(check, i, 0); // Check/uncheck the first column (checkbox column)
-                }
-            }
-        }
     }
 
     private void loadStudentData(String department, DefaultTableModel model) {
@@ -193,8 +252,8 @@ public class AttendanceSystem extends JFrame {
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
             String email = "faculty001@xyz.edu.in"; // Replace with the actual email you want to use
-            AttendanceSystem attendanceSystem = new AttendanceSystem(email);
-            attendanceSystem.setVisible(true);
+            toAttendanceSystem toattendanceSystem = new toAttendanceSystem(email);
+            toattendanceSystem.setVisible(true);
         });
     }
     
