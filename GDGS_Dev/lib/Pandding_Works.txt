@@ -6,11 +6,9 @@ student
 
 
 faculty
--> salary
-->principal section add 
-->principal to admin messages
-->admin to principal messges
-->sedule add to do list
+
+
+->attedeance
 ->event attence
 
 

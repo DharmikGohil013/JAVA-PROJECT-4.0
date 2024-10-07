@@ -38,7 +38,7 @@ public class infacultysection extends JFrame {
                 "Profile", "Attendance", "Grades", "Time Table", "Meetings", "Notices",
                 "Research", "Publications", "Faculty Events", "Schedules", "Salary Details", "Leaves",
                 "Department Info", "Upload Material", "Assignments", "Lectures", "View Event", "Students",
-                "University Updates", "Event Atted.", "Seminars", "Projects", "Logout", "Exit",
+                "University Updates", "Event Atted.", "Principal Section", "Projects", "Logout", "Exit",
                 "Holidays", "Supervisions", "Exams", "Grading System", "Classroom Info", "Help Desk"
         };
 
@@ -89,7 +89,7 @@ public class infacultysection extends JFrame {
         buttons[6].addActionListener(e-> new research());
         buttons[7].addActionListener(e-> new publication());
         buttons[8].addActionListener(e-> new ViewEvent());
-        buttons[9].addActionListener(e-> new Schedules());
+        buttons[9].addActionListener(e-> new toFacultyScheduleSection());
         buttons[10].addActionListener(e-> new FacultySalarySection(email));
         buttons[11].addActionListener(e-> new FacultyLeaveSystem(email));
         buttons[12].addActionListener(e-> new departmentinfo());
@@ -100,7 +100,7 @@ public class infacultysection extends JFrame {
         buttons[17].addActionListener(e-> new FacultyStudentSection(email));
         buttons[18].addActionListener(e-> new UniversityUpdatesSection());
         buttons[19].addActionListener(e-> new Workshop());
-        buttons[20].addActionListener(e-> new seminar());
+        buttons[20].addActionListener(e-> new PrincipalSection());
         buttons[21].addActionListener(e-> new project());
         buttons[22].addActionListener(e-> new LogoutPage());
         buttons[23].addActionListener(e-> new ExitPage());
