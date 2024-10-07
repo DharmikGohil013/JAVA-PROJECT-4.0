@@ -1,10 +1,10 @@
+// inStudentSection.java
 package util;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class inStudentSection {
-
     JFrame frame;
     String loggedInEmail;  // Store the logged-in user's email
 
@@ -34,7 +34,7 @@ public class inStudentSection {
         JButton crMenuButton = new JButton("CR Menu");
         JButton logoutButton = new JButton("Logout");
         JButton exitButton = new JButton("Exit");
-        JButton otherButton = new JButton("Assigment Submission");
+        JButton otherButton = new JButton("Assignment Submission");
         JButton otherButton1 = new JButton("Student Records");
         JButton otherButton2 = new JButton("Help Desk");
         JButton otherButton3 = new JButton("Notice"); // New Other button
@@ -50,7 +50,7 @@ public class inStudentSection {
         // Apply style to all buttons
         JButton[] buttons = {profileButton, attendanceButton, feesButton, resultButton, classUpdatesButton, materialLinksButton,
                 eventsButton, universityUpdatesButton, nextExamButton, nextHolidayButton, onlineLectureButton, 
-                timeTableButton, facultyDetailsButton, ccOnlyButton, crMenuButton, logoutButton, exitButton, otherButton,otherButton1,otherButton2,otherButton3};
+                timeTableButton, facultyDetailsButton, ccOnlyButton, crMenuButton, logoutButton, exitButton, otherButton, otherButton1, otherButton2, otherButton3};
 
         for (JButton button : buttons) {
             button.setPreferredSize(buttonSize);
@@ -61,12 +61,10 @@ public class inStudentSection {
         }
 
         // Assign different colors for better UI contrast
-        profileButton.setBackground(buttonColorPrimary);
-        attendanceButton.setBackground(buttonColorPrimary);
-        feesButton.setBackground(buttonColorPrimary);
-        resultButton.setBackground(buttonColorPrimary);
-        classUpdatesButton.setBackground(buttonColorPrimary);
-        materialLinksButton.setBackground(buttonColorPrimary);
+        for (JButton button : buttons) {
+            button.setBackground(buttonColorPrimary);
+        }
+        
         eventsButton.setBackground(buttonColorSecondary);
         universityUpdatesButton.setBackground(buttonColorSecondary);
         nextExamButton.setBackground(buttonColorSecondary);
@@ -75,14 +73,6 @@ public class inStudentSection {
         timeTableButton.setBackground(buttonColorSecondary);
         facultyDetailsButton.setBackground(buttonColorSecondary);
         ccOnlyButton.setBackground(buttonColorHighlight);  // Highlight for new CC Only button
-        crMenuButton.setBackground(buttonColorPrimary);
-        logoutButton.setBackground(buttonColorPrimary);
-        exitButton.setBackground(buttonColorPrimary);
-        
-        otherButton.setBackground(buttonColorPrimary);
-        otherButton1.setBackground(buttonColorPrimary);
-         otherButton2.setBackground(buttonColorPrimary);// Style for new "Other" button
-         otherButton3.setBackground(buttonColorPrimary);
 
         // Set button positions in 3 rows of 6 buttons each
         int xStart = 250, yStart = 100, xSpacing = 250, ySpacing = 100;
@@ -102,29 +92,37 @@ public class inStudentSection {
 
         // Button action listeners
         profileButton.addActionListener(e -> new ProfileSection(loggedInEmail));
-        attendanceButton.addActionListener(e -> new AttendanceSection(loggedInEmail));
         feesButton.addActionListener(e -> new FeesSection(loggedInEmail));
         resultButton.addActionListener(e -> new ResultSection(loggedInEmail));
         classUpdatesButton.addActionListener(e -> new ClassUpdatesPage(loggedInEmail));
-        materialLinksButton.addActionListener(e -> new MaterialLinksSection(email));
+        materialLinksButton.addActionListener(e -> new MaterialLinksSection(loggedInEmail));
         eventsButton.addActionListener(e -> new ViewEvent());
         universityUpdatesButton.addActionListener(e -> new UniversityUpdates());
         nextExamButton.addActionListener(e -> new DepartmentSelectionPage());
         nextHolidayButton.addActionListener(e -> new NextHolidaySection());
         onlineLectureButton.addActionListener(e -> new OnlineLecturesSection());
+        
+        // Action listener for the attendance button
+        attendanceButton.addActionListener(e -> {
+            try {
+                new AttendanceViewer(loggedInEmail); // Open Attendance Viewer
+            } catch (Exception ex) {
+                ex.printStackTrace(); // Print the stack trace for debugging
+                JOptionPane.showMessageDialog(frame, "Error opening attendance viewer: " + ex.getMessage());
+            }
+        });
 
         // New button action listeners
-        timeTableButton.addActionListener(e -> new TimeTableSection(email));       
-        facultyDetailsButton.addActionListener(e -> new FacultyDetailsSection(email));
-        ccOnlyButton.addActionListener(e -> new CCSection(email)); // Action for CC Only button
-        crMenuButton.addActionListener(e -> new CRSectionMenu(email));
+        timeTableButton.addActionListener(e -> new TimeTableSection(loggedInEmail));       
+        facultyDetailsButton.addActionListener(e -> new FacultyDetailsSection(loggedInEmail));
+        ccOnlyButton.addActionListener(e -> new CCSection(loggedInEmail)); // Action for CC Only button
+        crMenuButton.addActionListener(e -> new CRSectionMenu(loggedInEmail));
         logoutButton.addActionListener(e -> new LogoutPage());
         exitButton.addActionListener(e -> new ExitPage());
-        otherButton.addActionListener(e -> new StudentAssignmentSubmission(email));
+        otherButton.addActionListener(e -> new StudentAssignmentSubmission(loggedInEmail));
         otherButton1.addActionListener(e -> new StudentEventPhotosSection());
         otherButton2.addActionListener(e -> new HelpSection());
         otherButton3.addActionListener(e -> new StudentNoticeSection());
-       // otherButton.addActionListener(e -> new OtherSection()); // Action for new "Other" button
 
         // Frame settings
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

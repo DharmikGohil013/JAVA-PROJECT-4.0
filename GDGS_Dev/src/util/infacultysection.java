@@ -104,7 +104,7 @@ public class infacultysection extends JFrame {
         buttons[16].addActionListener(e-> new ViewEvent());
         buttons[17].addActionListener(e-> new FacultyStudentSection(email));
         buttons[18].addActionListener(e-> new UniversityUpdatesSection());
-        buttons[19].addActionListener(e-> new Workshop());
+        buttons[19].addActionListener(e-> new FacultyEventAttendanceViewer());
         buttons[20].addActionListener(e-> new PrincipalSection());
         buttons[21].addActionListener(e-> new project());
         buttons[22].addActionListener(e-> new LogoutPage());
