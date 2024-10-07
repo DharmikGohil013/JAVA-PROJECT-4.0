@@ -48,7 +48,7 @@ public class inAdminSection {
             "Add Event", "Show Time Table", "Fees Section", "Salary Section",
             "Send Principal Message", "View Principal Messages", "View Results",
             "View Fees Details", "Change Time Table Details", "View University Update", " Add Next Exam Info","Add Next Holiday"
-             ,"Other", 
+             ,"Faculty Le.", 
             "Course Plan", "Notice", "Exams", "Grading System", "Classroom Info",
             "Help Desk", "New Courses", "Student Records", "Faculty Policies","Logout","Exit"
         };
