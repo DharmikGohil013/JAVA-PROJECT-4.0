@@ -113,6 +113,7 @@ public class ChangeTimetableDetails {
                 
                 // Implement back action logic here (e.g., go to a previous screen)
                 JOptionPane.showMessageDialog(frame, "Back button clicked!");
+                frame.dispose();
                 new ShowTimeTablesSection();
                 
             }
