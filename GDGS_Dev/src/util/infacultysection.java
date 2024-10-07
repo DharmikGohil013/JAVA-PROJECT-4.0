@@ -10,14 +10,11 @@ public class infacultysection extends JFrame {
     private Image backgroundImage;
 
     public infacultysection(String email) {
-        // Load the background image
         try {
             backgroundImage = ImageIO.read(new File("D:\\Git Hub\\JAVA-PROJECT-4.0\\GDGS_Dev\\src\\util\\faculty1.png"));  // Absolute path
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-        // Create a custom JPanel for the background
         JPanel panel = new JPanel() {
             @Override
             protected void paintComponent(Graphics g) {
@@ -29,9 +26,7 @@ public class infacultysection extends JFrame {
             }
         };
 
-        panel.setLayout(null); // Set layout to null for manual button positioning
-
-        // Create 30 buttons for the Faculty Section
+        panel.setLayout(null);
         JButton[] buttons = new JButton[30];
         String[] buttonNames = 
         {
@@ -42,26 +37,24 @@ public class infacultysection extends JFrame {
                 "Holidays", "Supervisions", "Exams", "Grading System", "Classroom Info", "Help Desk"
         };
 
-        // Set button size, font, and colors
+
         Dimension buttonSize = new Dimension(200, 50);
         Font buttonFont = new Font("Arial", Font.BOLD, 16);
         Color buttonColorPrimary = new Color(70, 130, 180);  // Steel blue
         Color buttonColorSecondary = new Color(60, 179, 113); // Medium sea green
         Color textColor = Color.WHITE;
-
-        // Initialize each button and apply styles
         for (int i = 0; i < 30; i++) 
         {
             buttons[i] = new JButton(buttonNames[i]);
             buttons[i].setPreferredSize(buttonSize);
             buttons[i].setFont(buttonFont);
             buttons[i].setForeground(textColor);
-            buttons[i].setFocusPainted(false); // Remove button border on click
-            buttons[i].setCursor(new Cursor(Cursor.HAND_CURSOR)); // Hand cursor
+            buttons[i].setFocusPainted(false); 
+            buttons[i].setCursor(new Cursor(Cursor.HAND_CURSOR));
             if (i < 15) {
-                buttons[i].setBackground(buttonColorPrimary); // Primary color for the first 15 buttons
+                buttons[i].setBackground(buttonColorPrimary); 
             } else {
-                buttons[i].setBackground(buttonColorSecondary); // Secondary color for the rest
+                buttons[i].setBackground(buttonColorSecondary); 
             }
         }
 
@@ -80,14 +73,8 @@ public class infacultysection extends JFrame {
                 row++;
             }
         }
-        
-        // Add action listeners for each button
         buttons[0].addActionListener(e -> new ProfilefacultySection(email));
-        
-        // Connect the second button to AttendanceSystem
         buttons[1].addActionListener(e -> new AttendanceSystem(email));
-
-       // buttons[2].addActionListener(e -> new GradesSection(email)); // Add an action for the "Grades" button
         buttons[3].addActionListener(e -> new TimeTableSection(email));
         buttons[4].addActionListener(e-> new facultymetting());
         buttons[5].addActionListener(e -> new FacultyNoticeSection());
