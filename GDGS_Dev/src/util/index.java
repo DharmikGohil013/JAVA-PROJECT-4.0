@@ -27,9 +27,7 @@ public class index implements ActionListener {
         label.setBounds(labelX, labelY, labelWidth, labelHeight); 
         label.setFont(new Font("Arial", Font.PLAIN, 100));
         label.setForeground(Color.YELLOW);
-          // Added the label to the frame
-
-        // Configure the Admin button
+   
         myButton.setBounds(0, 370, 300, 300);
         myButton.setFocusable(false);
         myButton.addActionListener(this);
