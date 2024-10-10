@@ -35,7 +35,7 @@ public class index implements ActionListener {
         myButton.setFont(new Font("Arial", Font.PLAIN, 50));
         myButton.setBackground(Color.BLUE);
 
-        // Configure the Student button
+
         my1Button.setBounds(1620, 0, 300, 300);
         my1Button.setFocusable(false);
         my1Button.addActionListener(this);
@@ -43,7 +43,6 @@ public class index implements ActionListener {
         my1Button.setFont(new Font("Arial", Font.PLAIN, 50));
         my1Button.setBackground(Color.GRAY);
 
-        // Configure the Faculty button
         my2Button.setBounds(1620, 370, 300, 300);
         my2Button.setFocusable(false);
         my2Button.addActionListener(this);
@@ -51,7 +50,7 @@ public class index implements ActionListener {
         my2Button.setFont(new Font("Arial", Font.PLAIN, 50));
         my2Button.setBackground(Color.GRAY);
 
-        // Configure the Exit button
+     
         my3Button.setBounds(1620, 740, 300, 300);
         my3Button.setFocusable(false);
         my3Button.addActionListener(this);
@@ -59,43 +58,40 @@ public class index implements ActionListener {
         my3Button.setFont(new Font("Arial", Font.PLAIN, 50));
         my3Button.setBackground(Color.GRAY);
 
-        // Add buttons to frame
         frame.add(myButton);
         frame.add(my1Button);
         frame.add(my2Button);
         frame.add(my3Button);
 
-        // Frame setup
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         frame.setLayout(null);
         frame.setVisible(true);
     }
 
-    // Single actionPerformed method that handles multiple buttons
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == myButton) {  // If Admin button is clicked
+        if (e.getSource() == myButton) { 
             frame.dispose();
-            AdminSection myWindow = new AdminSection();  // Open AdminSection window
-        } else if (e.getSource() == my1Button) {  // If Student button is clicked
+            AdminSection myWindow = new AdminSection();  
+        } else if (e.getSource() == my1Button) {  
             frame.dispose();
-            StudentSection studentWindow = new StudentSection();  // Open StudentSection window
-        } else if (e.getSource() == my2Button) {  // If Faculty button is clicked
+            StudentSection studentWindow = new StudentSection();  
+        } else if (e.getSource() == my2Button) {  
             frame.dispose();
-            FacultySection facultyWindow = new FacultySection();  // Open FacultySection window
-        } else if (e.getSource() == my3Button) {  // If Exit button is clicked
-            System.exit(0);  // Terminate the program
+            FacultySection facultyWindow = new FacultySection(); 
+        } else if (e.getSource() == my3Button) {  
+            System.exit(0); 
         }
     }
 
-    // BackgroundPanel class for setting the background image
+ 
     class BackgroundPanel extends JPanel {
         private Image backgroundImage;
     
         public BackgroundPanel() {
             try {
-                // Use double backslashes or forward slashes for the image path
+             
                 backgroundImage = new ImageIcon("D:\\Git Hub\\JAVA-PROJECT-4.0\\GDGS_Dev\\src\\util\\CampusADMINPRO.png").getImage();
                 
                 if (backgroundImage == null) {
@@ -119,7 +115,7 @@ public class index implements ActionListener {
         }
     }
 
-    // Main method to launch the page
+   
     public static void main(String[] args) {
         new index();
     }
