@@ -6,17 +6,13 @@ import java.sql.*;
 
 public class AttendanceViewer extends JFrame {
     private JTextArea resultArea;
-
-    // Database connection settings
-    private static final String DB_URL = "jdbc:mysql://localhost:3306/test_db"; // replace with your database URL
-    private static final String DB_USER = "root"; // replace with your username
-    private static final String DB_PASSWORD = "DHARMIKgohil@2006"; // replace with your password
-
-    // Constructor that accepts an email
+    private static final String DB_URL = "jdbc:mysql://localhost:3306/test_db"; 
+    private static final String DB_USER = "root"; 
+    private static final String DB_PASSWORD = "DHARMIKgohil@2006"; 
     public AttendanceViewer(String email) {
         setTitle("Student Attendance Viewer");
         setSize(400, 300);
-        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // Close only this window
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); 
         setLocationRelativeTo(null);
 
         resultArea = new JTextArea(10, 30);
@@ -24,17 +20,17 @@ public class AttendanceViewer extends JFrame {
         JScrollPane scrollPane = new JScrollPane(resultArea);
         add(scrollPane, BorderLayout.CENTER);
 
-        // Call the method to check attendance based on the provided email
+    
         checkAttendance(email);
         
-        setVisible(true); // Set visibility after components are added
+        setVisible(true); 
     }
 
     private void checkAttendance(String email) {
         String department = getDepartment(email);
 
         if (department != null) {
-            // Now check attendance records
+          
             String attendanceRecords = getAttendanceRecords(email, department);
             resultArea.setText(attendanceRecords);
         } else {
@@ -56,8 +52,8 @@ public class AttendanceViewer extends JFrame {
                 ResultSet rs = pstmt.executeQuery();
 
                 if (rs.next() && rs.getInt(1) > 0) {
-                    department = dept; // Found the department
-                    break; // No need to check other departments
+                    department = dept;
+                    break; 
                 }
 
             } catch (SQLException e) {
@@ -78,13 +74,13 @@ public class AttendanceViewer extends JFrame {
             pstmt.setString(1, email);
             ResultSet rs = pstmt.executeQuery();
 
-            // Check if the attendance table exists and fetch records
+          
             if (!checkTableExists(conn, tableName)) {
                 records.append("Attendance table for department ").append(department).append(" does not exist.");
                 return records.toString();
             }
 
-            // If attendance records exist, append them to the results
+           
             while (rs.next()) {
                 String subject = rs.getString("subject_name");
                 Date date = rs.getDate("date");
@@ -108,16 +104,16 @@ public class AttendanceViewer extends JFrame {
 
     private boolean checkTableExists(Connection conn, String tableName) {
         try (ResultSet rs = conn.getMetaData().getTables(null, null, tableName, null)) {
-            return rs.next(); // If a result is returned, the table exists
+            return rs.next(); 
         } catch (SQLException e) {
             e.printStackTrace();
-            return false; // On error, assume table does not exist
+            return false; 
         }
     }
 
     public static void main(String[] args) {
-        // Example email to check
-        String studentEmail = "23dit001@xyz.edu.in"; // Replace with the desired email
+        
+        String studentEmail = "23dit001@xyz.edu.in"; 
         SwingUtilities.invokeLater(() -> {
             AttendanceViewer viewer = new AttendanceViewer(studentEmail);
             viewer.setVisible(true);
