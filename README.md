@@ -65,3 +65,7 @@ For any questions or suggestions, feel free to reach out:
 - GitHub: DHARMIKgohil013(https://github.com/DharmikGohil013)
 
 - @2024 GDCS System
+
+- # Disclaimer
+This project is intended for educational purposes only. Unauthorized downloading, redistribution, or use of this code is strictly prohibited. Please contact the project owner for any inquiries.
+
