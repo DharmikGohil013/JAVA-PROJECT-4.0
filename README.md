@@ -16,19 +16,7 @@ The **College Management E-Governance System** is a web-based application design
 ## Technologies Used
 - **Frontend**: `Java`, `Swing Lai`, `AWS Use` (if applicable)
 - **Database**: `MySQL`, `MongoDB`, or any other database used
-## Installation
-1. Clone the repository:
-    ```bash
-    git clone https://github.com/DharmikGohil013/JAVA-PROJECT-4.0.git
-    ```
-2. Navigate to the project directory:
-    ```bash
-    cd JAVA-PROJECT-4.0
-    ```
-3. Install dependencies:
-    ```bash
-    npm install
-    ```
+
 ## Usage
 1. **Admin Login**: Use the default admin credentials to access the admin dashboard.
 2. **Student Registration**: Students can register themselves using the registration form.
