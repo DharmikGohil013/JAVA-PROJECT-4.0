@@ -27,25 +27,6 @@ The **College Management E-Governance System** is a web-based application design
 ![Screenshot 2024-09-28 113125](https://github.com/user-attachments/assets/81771585-7df9-4fe1-82ff-b90f9b3085a2)
 
 ![image](https://github.com/user-attachments/assets/bbbb348f-d074-41ef-9cd1-972a7cf80c81)
-## Contributing
-Contributions are welcome! Please follow these steps to contribute:
-1. Fork the repository:
-    ```bash
-    git fork https://github.com/DharmikGohil013/JAVA-PROJECT-4.0.git
-    ```
-2. Create a new branch:
-    ```bash
-    git checkout -b feature/your-feature
-    ```
-3. Commit your changes:
-    ```bash
-    git commit -m "Add your feature"
-    ```
-4. Push to the branch:
-    ```bash
-    git push origin main
-    ```
-5. Open a Pull Request.
 
 ## Contact
 For any questions or suggestions, feel free to reach out:
