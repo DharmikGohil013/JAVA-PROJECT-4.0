@@ -106,7 +106,7 @@ public class FacultyAssignmentUpload extends JFrame {
             return;
         }
 
-        // Save the file to a specific folder on the server (e.g., "assignments/")
+       
         String filePath = "assignments/" + selectedFile.getName();  // Customize your file storage path
 
         try {
