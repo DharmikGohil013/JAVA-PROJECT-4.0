@@ -30,7 +30,7 @@ public class infacultysection extends JFrame {
         JButton[] buttons = new JButton[30];
         String[] buttonNames = 
         {
-                "Profile", "Attendance", "Grades", "Time Table", "Meetings", "Notices",
+                "Profile",  "Time Table", "Grades", "Attendance", "Meetings", "Notices",
                 "Research", "Publications", "Faculty Events", "Schedules", "Salary Details", "Leaves",
                 "Result", "Upload Material", "Assignments", "Lectures", "View Event", "Students",
                 "University Updates", "Event Atted.", "Principal Section", "Projects", "Logout", "Exit",
@@ -74,8 +74,8 @@ public class infacultysection extends JFrame {
             }
         }
         buttons[0].addActionListener(e -> new ProfilefacultySection(email));
-        buttons[1].addActionListener(e -> new AttendanceSystem(email));
-        buttons[3].addActionListener(e -> new TimeTableSection(email));
+        buttons[1].addActionListener(e -> new TimeTableSection(email));
+        buttons[3].addActionListener(e -> new AttendanceSystem(email));
         buttons[4].addActionListener(e-> new facultymetting());
         buttons[5].addActionListener(e -> new FacultyNoticeSection());
         buttons[6].addActionListener(e-> new research());
