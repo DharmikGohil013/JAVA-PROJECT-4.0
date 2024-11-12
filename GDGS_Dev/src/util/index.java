@@ -92,7 +92,7 @@ public class index implements ActionListener {
         public BackgroundPanel() {
             try {
              
-                backgroundImage = new ImageIcon("D:\\Git Hub\\JAVA-PROJECT-4.0\\GDGS_Dev\\src\\util\\CampusADMINPRO.png").getImage();
+                backgroundImage = new ImageIcon("D:\\Git Hub\\Java Dev & Projects\\JAVA-PROJECT-4.0\\GDGS_Dev\\src\\util\\CampusADMINPRO.png").getImage();
                 
                 if (backgroundImage == null) {
                     System.err.println("Failed to load image from path: D:\\Git Hub\\JAVA-PROJECT-4.0\\GDGS_Dev\\GDS SYSTEM.png");
