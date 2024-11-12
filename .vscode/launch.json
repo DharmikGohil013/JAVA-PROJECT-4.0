@@ -1,0 +1,671 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        
+        {
+            "name": "Launch Chrome",
+            "request": "launch",
+            "type": "chrome",
+            "url": "http://localhost:8080",
+            "webRoot": "${workspaceFolder}"
+        },
+        {
+            "name": "Attach to Chrome",
+            "port": 9222,
+            "request": "attach",
+            "type": "chrome",
+            "webRoot": "${workspaceFolder}"
+        },
+
+
+
+
+
+        {
+            "type": "java",
+            "name": "Current File",
+            "request": "launch",
+            "mainClass": "${file}"
+        },
+        {
+            "type": "java",
+            "name": "AddAdminSection",
+            "request": "launch",
+            "mainClass": "util.AddAdminSection",
+            "projectName": "JAVA-PROJECT-4.0_5d407d6a"
+        },
+        {
+            "type": "java",
+            "name": "AddEventSection",
+            "request": "launch",
+            "mainClass": "util.AddEventSection",
+            "projectName": "JAVA-PROJECT-4.0_5d407d6a"
+        },
+        {
+            "type": "java",
+            "name": "AddFacultySection",
+            "request": "launch",
+            "mainClass": "util.AddFacultySection",
+            "projectName": "JAVA-PROJECT-4.0_5d407d6a"
+        },
+        {
+            "type": "java",
+            "name": "AddMaterialLinkPage",
+            "request": "launch",
+            "mainClass": "util.AddMaterialLinkPage",
+            "projectName": "JAVA-PROJECT-4.0_5d407d6a"
+        },
+        {
+            "type": "java",
+            "name": "AddNextExamInfoSection",
+            "request": "launch",
+            "mainClass": "util.AddNextExamInfoSection",
+            "projectName": "JAVA-PROJECT-4.0_5d407d6a"
+        },
+        {
+            "type": "java",
+            "name": "AddNextHolidaySection",
+            "request": "launch",
+            "mainClass": "util.AddNextHolidaySection",
+            "projectName": "JAVA-PROJECT-4.0_5d407d6a"
+        },
+        {
+            "type": "java",
+            "name": "AddStudentSection",
+            "request": "launch",
+            "mainClass": "util.AddStudentSection",
+            "projectName": "JAVA-PROJECT-4.0_5d407d6a"
+        },
+        {
+            "type": "java",
+            "name": "AddadminEventSection",
+            "request": "launch",
+            "mainClass": "util.AddadminEventSection",
+            "projectName": "JAVA-PROJECT-4.0_5d407d6a"
+        },
+        {
+            "type": "java",
+            "name": "AdminLeaveApproval",
+            "request": "launch",
+            "mainClass": "util.AdminLeaveApproval",
+            "projectName": "JAVA-PROJECT-4.0_5d407d6a"
+        },
+        {
+            "type": "java",
+            "name": "AdminMessageView",
+            "request": "launch",
+            "mainClass": "util.AdminMessageView",
+            "projectName": "JAVA-PROJECT-4.0_5d407d6a"
+        },
+        {
+            "type": "java",
+            "name": "AdminSection",
+            "request": "launch",
+            "mainClass": "util.AdminSection",
+            "projectName": "JAVA-PROJECT-4.0_5d407d6a"
+        },
+        {
+            "type": "java",
+            "name": "AllAdminProfilesSection",
+            "request": "launch",
+            "mainClass": "util.AllAdminProfilesSection",
+            "projectName": "JAVA-PROJECT-4.0_5d407d6a"
+        },
+        {
+            "type": "java",
+            "name": "AllFacultyDetailsSection",
+            "request": "launch",
+            "mainClass": "util.AllFacultyDetailsSection",
+            "projectName": "JAVA-PROJECT-4.0_5d407d6a"
+        },
+        {
+            "type": "java",
+            "name": "AttendanceSystem",
+            "request": "launch",
+            "mainClass": "util.AttendanceSystem",
+            "projectName": "JAVA-PROJECT-4.0_5d407d6a"
+        },
+        {
+            "type": "java",
+            "name": "AttendanceViewer",
+            "request": "launch",
+            "mainClass": "util.AttendanceViewer",
+            "projectName": "JAVA-PROJECT-4.0_5d407d6a"
+        },
+        {
+            "type": "java",
+            "name": "CRSectionMenu",
+            "request": "launch",
+            "mainClass": "util.CRSectionMenu",
+            "projectName": "JAVA-PROJECT-4.0_5d407d6a"
+        },
+        {
+            "type": "java",
+            "name": "ChangeAdminSection",
+            "request": "launch",
+            "mainClass": "util.ChangeAdminSection",
+            "projectName": "JAVA-PROJECT-4.0_5d407d6a"
+        },
+        {
+            "type": "java",
+            "name": "ChangeFacultySection",
+            "request": "launch",
+            "mainClass": "util.ChangeFacultySection",
+            "projectName": "JAVA-PROJECT-4.0_5d407d6a"
+        },
+        {
+            "type": "java",
+            "name": "ChangeStudentSection",
+            "request": "launch",
+            "mainClass": "util.ChangeStudentSection",
+            "projectName": "JAVA-PROJECT-4.0_5d407d6a"
+        },
+        {
+            "type": "java",
+            "name": "ChangeTimetableDetails",
+            "request": "launch",
+            "mainClass": "util.ChangeTimetableDetails",
+            "projectName": "JAVA-PROJECT-4.0_5d407d6a"
+        },
+        {
+            "type": "java",
+            "name": "ClassUpdateEntryPage",
+            "request": "launch",
+            "mainClass": "util.ClassUpdateEntryPage",
+            "projectName": "JAVA-PROJECT-4.0_5d407d6a"
+        },
+        {
+            "type": "java",
+            "name": "ClassUpdatesPage",
+            "request": "launch",
+            "mainClass": "util.ClassUpdatesPage",
+            "projectName": "JAVA-PROJECT-4.0_5d407d6a"
+        },
+        {
+            "type": "java",
+            "name": "Classroom",
+            "request": "launch",
+            "mainClass": "util.Classroom",
+            "projectName": "JAVA-PROJECT-4.0_5d407d6a"
+        },
+        {
+            "type": "java",
+            "name": "ClassroomInformation",
+            "request": "launch",
+            "mainClass": "util.ClassroomInformation",
+            "projectName": "JAVA-PROJECT-4.0_5d407d6a"
+        },
+        {
+            "type": "java",
+            "name": "DepartmentSelectionPage",
+            "request": "launch",
+            "mainClass": "util.DepartmentSelectionPage",
+            "projectName": "JAVA-PROJECT-4.0_5d407d6a"
+        },
+        {
+            "type": "java",
+            "name": "EditFacultyPoliciesSection",
+            "request": "launch",
+            "mainClass": "util.EditFacultyPoliciesSection",
+            "projectName": "JAVA-PROJECT-4.0_5d407d6a"
+        },
+        {
+            "type": "java",
+            "name": "EventAttendanceSection",
+            "request": "launch",
+            "mainClass": "util.EventAttendanceSection",
+            "projectName": "JAVA-PROJECT-4.0_5d407d6a"
+        },
+        {
+            "type": "java",
+            "name": "ExamSection",
+            "request": "launch",
+            "mainClass": "util.ExamSection",
+            "projectName": "JAVA-PROJECT-4.0_5d407d6a"
+        },
+        {
+            "type": "java",
+            "name": "ExitPage",
+            "request": "launch",
+            "mainClass": "util.ExitPage",
+            "projectName": "JAVA-PROJECT-4.0_5d407d6a"
+        },
+        {
+            "type": "java",
+            "name": "FacultyAssignmentUpload",
+            "request": "launch",
+            "mainClass": "util.FacultyAssignmentUpload",
+            "projectName": "JAVA-PROJECT-4.0_5d407d6a"
+        },
+        {
+            "type": "java",
+            "name": "FacultyDetailsSection",
+            "request": "launch",
+            "mainClass": "util.FacultyDetailsSection",
+            "projectName": "JAVA-PROJECT-4.0_5d407d6a"
+        },
+        {
+            "type": "java",
+            "name": "FacultyEventAttendanceViewer",
+            "request": "launch",
+            "mainClass": "util.FacultyEventAttendanceViewer",
+            "projectName": "JAVA-PROJECT-4.0_5d407d6a"
+        },
+        {
+            "type": "java",
+            "name": "FacultyLeaveSystem",
+            "request": "launch",
+            "mainClass": "util.FacultyLeaveSystem",
+            "projectName": "JAVA-PROJECT-4.0_5d407d6a"
+        },
+        {
+            "type": "java",
+            "name": "FacultyNoticeSection",
+            "request": "launch",
+            "mainClass": "util.FacultyNoticeSection",
+            "projectName": "JAVA-PROJECT-4.0_5d407d6a"
+        },
+        {
+            "type": "java",
+            "name": "FacultyPoliciesSection",
+            "request": "launch",
+            "mainClass": "util.FacultyPoliciesSection",
+            "projectName": "JAVA-PROJECT-4.0_5d407d6a"
+        },
+        {
+            "type": "java",
+            "name": "FacultySalarySection",
+            "request": "launch",
+            "mainClass": "util.FacultySalarySection",
+            "projectName": "JAVA-PROJECT-4.0_5d407d6a"
+        },
+        {
+            "type": "java",
+            "name": "FacultySection",
+            "request": "launch",
+            "mainClass": "util.FacultySection",
+            "projectName": "JAVA-PROJECT-4.0_5d407d6a"
+        },
+        {
+            "type": "java",
+            "name": "FacultyStudentSection",
+            "request": "launch",
+            "mainClass": "util.FacultyStudentSection",
+            "projectName": "JAVA-PROJECT-4.0_5d407d6a"
+        },
+        {
+            "type": "java",
+            "name": "GradingSystemInfo",
+            "request": "launch",
+            "mainClass": "util.GradingSystemInfo",
+            "projectName": "JAVA-PROJECT-4.0_5d407d6a"
+        },
+        {
+            "type": "java",
+            "name": "HelpSection",
+            "request": "launch",
+            "mainClass": "util.HelpSection",
+            "projectName": "JAVA-PROJECT-4.0_5d407d6a"
+        },
+        {
+            "type": "java",
+            "name": "HolidayInfoPage",
+            "request": "launch",
+            "mainClass": "util.HolidayInfoPage",
+            "projectName": "JAVA-PROJECT-4.0_5d407d6a"
+        },
+        {
+            "type": "java",
+            "name": "LogoutPage",
+            "request": "launch",
+            "mainClass": "util.LogoutPage",
+            "projectName": "JAVA-PROJECT-4.0_5d407d6a"
+        },
+        {
+            "type": "java",
+            "name": "MainMenu",
+            "request": "launch",
+            "mainClass": "util.MainMenu",
+            "projectName": "JAVA-PROJECT-4.0_5d407d6a"
+        },
+        {
+            "type": "java",
+            "name": "MaterialLinksSection",
+            "request": "launch",
+            "mainClass": "util.MaterialLinksSection",
+            "projectName": "JAVA-PROJECT-4.0_5d407d6a"
+        },
+        {
+            "type": "java",
+            "name": "NewCourseSection",
+            "request": "launch",
+            "mainClass": "util.NewCourseSection",
+            "projectName": "JAVA-PROJECT-4.0_5d407d6a"
+        },
+        {
+            "type": "java",
+            "name": "NextExamSection",
+            "request": "launch",
+            "mainClass": "util.NextExamSection",
+            "projectName": "JAVA-PROJECT-4.0_5d407d6a"
+        },
+        {
+            "type": "java",
+            "name": "NextHolidaySection",
+            "request": "launch",
+            "mainClass": "util.NextHolidaySection",
+            "projectName": "JAVA-PROJECT-4.0_5d407d6a"
+        },
+        {
+            "type": "java",
+            "name": "OnlineLecturesSection",
+            "request": "launch",
+            "mainClass": "util.OnlineLecturesSection",
+            "projectName": "JAVA-PROJECT-4.0_5d407d6a"
+        },
+        {
+            "type": "java",
+            "name": "PrincipalSection",
+            "request": "launch",
+            "mainClass": "util.PrincipalSection",
+            "projectName": "JAVA-PROJECT-4.0_5d407d6a"
+        },
+        {
+            "type": "java",
+            "name": "ProfileadminSection",
+            "request": "launch",
+            "mainClass": "util.ProfileadminSection",
+            "projectName": "JAVA-PROJECT-4.0_5d407d6a"
+        },
+        {
+            "type": "java",
+            "name": "ProfilefacultySection",
+            "request": "launch",
+            "mainClass": "util.ProfilefacultySection",
+            "projectName": "JAVA-PROJECT-4.0_5d407d6a"
+        },
+        {
+            "type": "java",
+            "name": "SalarySection",
+            "request": "launch",
+            "mainClass": "util.SalarySection",
+            "projectName": "JAVA-PROJECT-4.0_5d407d6a"
+        },
+        {
+            "type": "java",
+            "name": "Schedules",
+            "request": "launch",
+            "mainClass": "util.Schedules",
+            "projectName": "JAVA-PROJECT-4.0_5d407d6a"
+        },
+        {
+            "type": "java",
+            "name": "SendMessageToPrincipal",
+            "request": "launch",
+            "mainClass": "util.SendMessageToPrincipal",
+            "projectName": "JAVA-PROJECT-4.0_5d407d6a"
+        },
+        {
+            "type": "java",
+            "name": "ShowTimeTablesSection",
+            "request": "launch",
+            "mainClass": "util.ShowTimeTablesSection",
+            "projectName": "JAVA-PROJECT-4.0_5d407d6a"
+        },
+        {
+            "type": "java",
+            "name": "StudentAssignmentSubmission",
+            "request": "launch",
+            "mainClass": "util.StudentAssignmentSubmission",
+            "projectName": "JAVA-PROJECT-4.0_5d407d6a"
+        },
+        {
+            "type": "java",
+            "name": "StudentDetailsSection",
+            "request": "launch",
+            "mainClass": "util.StudentDetailsSection",
+            "projectName": "JAVA-PROJECT-4.0_5d407d6a"
+        },
+        {
+            "type": "java",
+            "name": "StudentEventGallery",
+            "request": "launch",
+            "mainClass": "util.StudentEventGallery",
+            "projectName": "JAVA-PROJECT-4.0_5d407d6a"
+        },
+        {
+            "type": "java",
+            "name": "StudentEventPhotosSection",
+            "request": "launch",
+            "mainClass": "util.StudentEventPhotosSection",
+            "projectName": "JAVA-PROJECT-4.0_5d407d6a"
+        },
+        {
+            "type": "java",
+            "name": "StudentNoticeSection",
+            "request": "launch",
+            "mainClass": "util.StudentNoticeSection",
+            "projectName": "JAVA-PROJECT-4.0_5d407d6a"
+        },
+        {
+            "type": "java",
+            "name": "StudentSection",
+            "request": "launch",
+            "mainClass": "util.StudentSection",
+            "projectName": "JAVA-PROJECT-4.0_5d407d6a"
+        },
+        {
+            "type": "java",
+            "name": "TimeTableSection",
+            "request": "launch",
+            "mainClass": "util.TimeTableSection",
+            "projectName": "JAVA-PROJECT-4.0_5d407d6a"
+        },
+        {
+            "type": "java",
+            "name": "UniversityUpdateSection",
+            "request": "launch",
+            "mainClass": "util.UniversityUpdateSection",
+            "projectName": "JAVA-PROJECT-4.0_5d407d6a"
+        },
+        {
+            "type": "java",
+            "name": "UniversityUpdatesSection",
+            "request": "launch",
+            "mainClass": "util.UniversityUpdatesSection",
+            "projectName": "JAVA-PROJECT-4.0_5d407d6a"
+        },
+        {
+            "type": "java",
+            "name": "UploadMaterialSection",
+            "request": "launch",
+            "mainClass": "util.UploadMaterialSection",
+            "projectName": "JAVA-PROJECT-4.0_5d407d6a"
+        },
+        {
+            "type": "java",
+            "name": "ViewFeesDetailSection",
+            "request": "launch",
+            "mainClass": "util.ViewFeesDetailSection",
+            "projectName": "JAVA-PROJECT-4.0_5d407d6a"
+        },
+        {
+            "type": "java",
+            "name": "ViewResultSection",
+            "request": "launch",
+            "mainClass": "util.ViewResultSection",
+            "projectName": "JAVA-PROJECT-4.0_5d407d6a"
+        },
+        {
+            "type": "java",
+            "name": "Workshop",
+            "request": "launch",
+            "mainClass": "util.Workshop",
+            "projectName": "JAVA-PROJECT-4.0_5d407d6a"
+        },
+        {
+            "type": "java",
+            "name": "addFeesSection",
+            "request": "launch",
+            "mainClass": "util.addFeesSection",
+            "projectName": "JAVA-PROJECT-4.0_5d407d6a"
+        },
+        {
+            "type": "java",
+            "name": "courceplan",
+            "request": "launch",
+            "mainClass": "util.courceplan",
+            "projectName": "JAVA-PROJECT-4.0_5d407d6a"
+        },
+        {
+            "type": "java",
+            "name": "courceplaning",
+            "request": "launch",
+            "mainClass": "util.courceplaning",
+            "projectName": "JAVA-PROJECT-4.0_5d407d6a"
+        },
+        {
+            "type": "java",
+            "name": "departmentinfo",
+            "request": "launch",
+            "mainClass": "util.departmentinfo",
+            "projectName": "JAVA-PROJECT-4.0_5d407d6a"
+        },
+        {
+            "type": "java",
+            "name": "facultyGradingSystemInfo",
+            "request": "launch",
+            "mainClass": "util.facultyGradingSystemInfo",
+            "projectName": "JAVA-PROJECT-4.0_5d407d6a"
+        },
+        {
+            "type": "java",
+            "name": "facultymetting",
+            "request": "launch",
+            "mainClass": "util.facultymetting",
+            "projectName": "JAVA-PROJECT-4.0_5d407d6a"
+        },
+        {
+            "type": "java",
+            "name": "feedback",
+            "request": "launch",
+            "mainClass": "util.feedback",
+            "projectName": "JAVA-PROJECT-4.0_5d407d6a"
+        },
+        {
+            "type": "java",
+            "name": "inAdminSection",
+            "request": "launch",
+            "mainClass": "util.inAdminSection",
+            "projectName": "JAVA-PROJECT-4.0_5d407d6a"
+        },
+        {
+            "type": "java",
+            "name": "inStudentSection",
+            "request": "launch",
+            "mainClass": "util.inStudentSection",
+            "projectName": "JAVA-PROJECT-4.0_5d407d6a"
+        },
+        {
+            "type": "java",
+            "name": "inadminpage",
+            "request": "launch",
+            "mainClass": "util.inadminpage",
+            "projectName": "JAVA-PROJECT-4.0_5d407d6a"
+        },
+        {
+            "type": "java",
+            "name": "index",
+            "request": "launch",
+            "mainClass": "util.index",
+            "projectName": "JAVA-PROJECT-4.0_5d407d6a"
+        },
+        {
+            "type": "java",
+            "name": "infacultysection",
+            "request": "launch",
+            "mainClass": "util.infacultysection",
+            "projectName": "JAVA-PROJECT-4.0_5d407d6a"
+        },
+        {
+            "type": "java",
+            "name": "lectures",
+            "request": "launch",
+            "mainClass": "util.lectures",
+            "projectName": "JAVA-PROJECT-4.0_5d407d6a"
+        },
+        {
+            "type": "java",
+            "name": "other",
+            "request": "launch",
+            "mainClass": "util.other",
+            "projectName": "JAVA-PROJECT-4.0_5d407d6a"
+        },
+        {
+            "type": "java",
+            "name": "project",
+            "request": "launch",
+            "mainClass": "util.project",
+            "projectName": "JAVA-PROJECT-4.0_5d407d6a"
+        },
+        {
+            "type": "java",
+            "name": "publication",
+            "request": "launch",
+            "mainClass": "util.publication",
+            "projectName": "JAVA-PROJECT-4.0_5d407d6a"
+        },
+        {
+            "type": "java",
+            "name": "research",
+            "request": "launch",
+            "mainClass": "util.research",
+            "projectName": "JAVA-PROJECT-4.0_5d407d6a"
+        },
+        {
+            "type": "java",
+            "name": "supervision",
+            "request": "launch",
+            "mainClass": "util.supervision",
+            "projectName": "JAVA-PROJECT-4.0_5d407d6a"
+        },
+        {
+            "type": "java",
+            "name": "supervision2",
+            "request": "launch",
+            "mainClass": "util.supervision2",
+            "projectName": "JAVA-PROJECT-4.0_5d407d6a"
+        },
+        {
+            "type": "java",
+            "name": "toAdminSection",
+            "request": "launch",
+            "mainClass": "util.toAdminSection",
+            "projectName": "JAVA-PROJECT-4.0_5d407d6a"
+        },
+        {
+            "type": "java",
+            "name": "toAttendanceSystem",
+            "request": "launch",
+            "mainClass": "util.toAttendanceSystem",
+            "projectName": "JAVA-PROJECT-4.0_5d407d6a"
+        },
+        {
+            "type": "java",
+            "name": "toFacultyResultSection",
+            "request": "launch",
+            "mainClass": "util.toFacultyResultSection",
+            "projectName": "JAVA-PROJECT-4.0_5d407d6a"
+        },
+        {
+            "type": "java",
+            "name": "toFacultyScheduleSection",
+            "request": "launch",
+            "mainClass": "util.toFacultyScheduleSection",
+            "projectName": "JAVA-PROJECT-4.0_5d407d6a"
+        }
+    ]
+}
