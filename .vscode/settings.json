@@ -3,6 +3,8 @@
         "lib/**/*.jar",
         "c:\\Users\\dharm\\Downloads\\mysql-connector-j-9.0.0\\mysql-connector-j-9.0.0\\mysql-connector-j-9.0.0.jar",
         "c:\\Users\\dharm\\Downloads\\jcalendar-1.2.2.jar\\jcalendar-1.2.2.jar",
-        "d:\\Git Hub\\Java Dev & Projects\\Lib\\mysql-connector-j-9.0.0\\mysql-connector-j-9.0.0\\mysql-connector-j-9.0.0.jar"
+        "d:\\Git Hub\\Java Dev & Projects\\Lib\\mysql-connector-j-9.0.0\\mysql-connector-j-9.0.0\\mysql-connector-j-9.0.0.jar",
+        "GDGS_Dev/lib/mysql-connector-j-9.0.0.jar",
+        "GDGS_Dev/lib/jcalendar-1.2.2.jar"
     ]
 }

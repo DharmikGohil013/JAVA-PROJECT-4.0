@@ -11,7 +11,7 @@ public class infacultysection extends JFrame {
 
     public infacultysection(String email) {
         try {
-            backgroundImage = ImageIO.read(new File("D:\\Git Hub\\JAVA-PROJECT-4.0\\GDGS_Dev\\src\\util\\faculty1.png"));  // Absolute path
+            backgroundImage = ImageIO.read(new File("D:\\Git Hub\\Java Dev Projects\\JAVA-PROJECT-4.0\\GDGS_Dev\\src\\util\\faculty1.png"));  // Absolute path
         } catch (IOException e) {
             e.printStackTrace();
         }

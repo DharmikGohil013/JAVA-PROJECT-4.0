@@ -19,7 +19,7 @@ public class inAdminSection {
 
         // Load the background image from an absolute path
         try {
-            backgroundImage = ImageIO.read(new File("D:\\Git Hub\\JAVA-PROJECT-4.0\\GDGS_Dev\\src\\util\\CampusADMINPRO (2).png"));  // Absolute path
+            backgroundImage = ImageIO.read(new File("D:\\Git Hub\\Java Dev Projects\\JAVA-PROJECT-4.0\\GDGS_Dev\\src\\util\\CampusADMINPRO (2).png"));  // Absolute path
         } catch (IOException e) {
             e.printStackTrace();
         }
